@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "962697832775",
+    "firebase_url": "https://covoiturage-sup.firebaseio.com",
+    "project_id": "covoiturage-sup",
+    "storage_bucket": "covoiturage-sup.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:962697832775:android:45d06d620a0bd9f82a0462",
+        "android_client_info": {
+          "package_name": "com.example.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "962697832775-po9nf7b3be2i3qudme5onbmmics86bni.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBh1-VsOzug-k_jRePJrNQnMFdYJJUNYWk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "962697832775-po9nf7b3be2i3qudme5onbmmics86bni.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:962697832775:android:6118c08f8be163b42a0462",
+        "android_client_info": {
+          "package_name": "com.example.cov"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "962697832775-po9nf7b3be2i3qudme5onbmmics86bni.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBh1-VsOzug-k_jRePJrNQnMFdYJJUNYWk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "962697832775-po9nf7b3be2i3qudme5onbmmics86bni.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
