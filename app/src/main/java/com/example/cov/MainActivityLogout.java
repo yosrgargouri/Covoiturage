@@ -78,7 +78,7 @@ public class MainActivityLogout extends AppCompatActivity {
                                     // Sign up success,
                                     Toast.makeText(MainActivityLogout.this, "User Created.", Toast.LENGTH_SHORT).show();
                                     FirebaseUser user = firebaseAuth.getCurrentUser();
-                                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                                     //updateUI(user);
                                 } else {
                                     // If sign up fails, display a message to the user.
