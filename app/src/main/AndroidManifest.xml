@@ -11,8 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.App">
         <activity android:name="com.example.cov.MainActivityLogout"></activity>
-        <activity android:name="com.example.cov.MainActivity" />
-        <activity android:name="com.example.cov.LoginActivity">
+        <activity android:name="com.example.cov.LoginActivity"/>
+            <activity android:name="com.example.cov.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
