@@ -8,46 +8,55 @@
     tools:context=".MainActivity"
     tools:layout_editor_absoluteY="81dp">
 
-    <TextView
-        android:id="@+id/headerOffres"
-        android:layout_width="268dp"
-        android:layout_height="59dp"
-        android:fontFamily="@font/berkshire_swash"
-        android:text="@string/main_title"
-        android:textAllCaps="false"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display3"
-        android:textColor="@color/purple_200"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        android:typeface="sans"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.072"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
         android:id="@+id/listData"
-        android:layout_width="496dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="18dp"
+        android:layout_width="377dp"
+        android:layout_height="419dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
         tools:fastScrollAlwaysVisible="true" />
 
     <Button
         android:id="@+id/button"
-        android:layout_width="40dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="2dp"
+        android:layout_width="75dp"
+        android:layout_height="40dp"
         android:text="+"
         app:backgroundTint="@color/purple_200"
-        app:layout_constraintBottom_toTopOf="@+id/listData"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/headerOffres"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="121dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="472dp"
+        android:fontFamily="@font/berkshire_swash"
+        android:text="list of offers"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:typeface="sans"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="146dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/aa" />
+    />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
