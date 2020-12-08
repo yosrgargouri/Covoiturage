@@ -3,81 +3,63 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:weightSum="100">
-
-
-    <TextView
-        android:id="@+id/fullName2"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:gravity="center"
-        android:text="Full name"
-        android:textAlignment="center"
-        tools:ignore="DuplicateIds" />
-
-    <TextView
-        android:id="@+id/email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Email"
-        android:textAlignment="center"
-        tools:ignore="DuplicateIds" />
+    android:padding="20dp"
+    tools:layout_editor_absoluteY="81dp">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="382dp"
+        android:layout_height="221dp"
         android:layout_marginTop="10dp"
         android:orientation="vertical"
         android:weightSum="100">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="35dp">
 
             <TextView
                 android:id="@+id/labelAdresseDepart"
                 android:layout_width="150dp"
-                android:layout_height="30dp"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:gravity="center|right"
                 android:text="Adresse depart : " />
 
-            <TextView
+            <EditText
                 android:id="@+id/adresseDepart"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_below="@+id/labelAdresseDepart"
+                android:layout_width="193dp"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:gravity="center|left"
-                android:text="heure de depart" />
+                android:layout_marginTop="2dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="28dp">
 
             <TextView
                 android:id="@+id/labelHeureDepart"
                 android:layout_width="150dp"
-                android:layout_height="30dp"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:gravity="center|right"
                 android:text="Heure de depart : " />
 
-            <TextView
+            <EditText
                 android:id="@+id/heureDepart"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_below="@+id/labelHeureDepart"
+                android:layout_width="193dp"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:gravity="center|left"
-                android:text="heure de depart" />
-
+                android:layout_marginTop="2dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
         </LinearLayout>
 
 

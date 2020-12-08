@@ -2,10 +2,14 @@ package com.example.cov;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import com.example.cov.model.Offre;
@@ -64,6 +68,27 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         mListData.setAdapter(new OffreListAdapter(MainActivity.this, R.layout.list_detail, offres));
+
+        Button mButtonPlus = (Button) findViewById(R.id.buttonPlus);
+        mButtonPlus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayDialogAdd();
+            }
+        });
+    }
+
+    //TODO
+    private void displayDialogAdd() {
+
+        Dialog dialog = new Dialog(MainActivity.this);
+        dialog.setTitle("ADD REQUEST");
+        dialog.setContentView(R.layout.add_dialog);
+        dialog.show();
+
+
+        //Find widgets
+        EditText mAdresse = dialog.findViewById(R.id.adresseDepart);
     }
 
 
@@ -72,4 +97,5 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(getApplicationContext(), LoginActivity.class));
         finish();
     }
+
 }
