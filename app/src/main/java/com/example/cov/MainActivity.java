@@ -34,6 +34,13 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference db;
     private ListView mListData;
     private SimpleDateFormat ISO_FORMAT = new SimpleDateFormat("dd-MM-yyyy'T'HH:mm'Z'");
+    private EditText mHeureDepart;
+    private EditText mAdresseDestination;
+    private EditText mAdresseDepart;
+    private EditText mNombrePlace;
+    private EditText mPrix;
+    private EditText mTelephone;
+    private Button saveBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //TODO
-    private void displayDialogAdd() {
+    public void displayDialogAdd() {
 
         Dialog dialog = new Dialog(MainActivity.this);
         dialog.setTitle("ADD REQUEST");
@@ -88,7 +95,41 @@ public class MainActivity extends AppCompatActivity {
 
 
         //Find widgets
-        EditText mAdresse = dialog.findViewById(R.id.adresseDepart);
+        mHeureDepart = dialog.findViewById(R.id.heureDepart);
+        mAdresseDestination = dialog.findViewById(R.id.adresseDestination);
+        mAdresseDepart = dialog.findViewById(R.id.adresseDepart);
+        mNombrePlace = dialog.findViewById(R.id.nombrePlace);
+        mPrix = dialog.findViewById(R.id.prix);
+        mTelephone = dialog.findViewById(R.id.telephone);
+
+        saveBtn = dialog.findViewById(R.id.btnSave);
+
+        saveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //get data form edit text
+                String heureDepart = mHeureDepart.getText().toString();
+                String adresseDestination = mAdresseDestination.getText().toString();
+                String adresseDepart = mAdresseDepart.getText().toString();
+                Integer nombrePlace = Integer.parseInt(mNombrePlace.getText().toString());
+                Integer prix = Integer.parseInt(mPrix.getText().toString());
+                Integer telephone = Integer.parseInt(mTelephone.getText().toString());
+
+                Offre offre = new Offre();
+                offre.setAdresse_depart(adresseDepart);
+                offre.setAdresse_destination(adresseDestination);
+                offre.setHeure_depart(heureDepart);
+                offre.setNombre_place(nombrePlace);
+                offre.setPrix(prix);
+                offre.setTelephone(telephone);
+
+                if (db.push().setValue(offre).isComplete()) {
+                    mHeureDepart.setText("");
+                    dialog.cancel();
+                }
+
+            }
+        });
     }
 
 
