@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,6 +13,7 @@
         android:layout_width="350dp"
         android:layout_height="298dp"
         android:layout_marginTop="10dp"
+        android:background="@drawable/capture5"
         android:orientation="vertical"
         android:weightSum="100">
 
@@ -25,7 +27,8 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:gravity="center|right"
-                android:text="Adresse depart : " />
+                android:text="Adresse depart : "
+                android:textColor="@color/black" />
 
             <EditText
                 android:id="@+id/adresseDepart"
@@ -35,7 +38,7 @@
                 android:layout_marginTop="2dp"
                 android:ems="10"
                 android:inputType="textPersonName"
-                 />
+                android:textColor="@color/black" />
 
 
         </LinearLayout>
@@ -50,7 +53,8 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:gravity="center|right"
-                android:text="Date et Heure de depart : " />
+                android:text="Date et Heure de depart : "
+                android:textColor="@color/black" />
 
             <EditText
                 android:id="@+id/heureDepart"
@@ -59,7 +63,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="2dp"
                 android:ems="10"
-                android:inputType="datetime" />
+                android:inputType="datetime"
+                android:textColor="@color/black" />
         </LinearLayout>
 
 
@@ -74,7 +79,8 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:gravity="center|right"
-                android:text="Adresse destination : " />
+                android:text="Adresse destination : "
+                android:textColor="@color/black" />
 
             <EditText
                 android:id="@+id/adresseDestination"
@@ -83,7 +89,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="2dp"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:textColor="@color/black" />
         </LinearLayout>
 
         <LinearLayout
@@ -97,7 +104,8 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:gravity="center|right"
-                android:text="Nombre de place : " />
+                android:text="Nombre de place : "
+                android:textColor="@color/black" />
 
 
             <EditText
@@ -107,7 +115,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="2dp"
                 android:ems="10"
-                android:inputType="numberDecimal"/>
+                android:inputType="numberDecimal"
+                android:textColor="@color/black" />
         </LinearLayout>
 
         <LinearLayout
@@ -121,7 +130,8 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:gravity="center|right"
-                android:text="Prix : " />
+                android:text="Prix : "
+                android:textColor="@color/black" />
 
 
             <EditText
@@ -131,7 +141,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="2dp"
                 android:ems="10"
-                android:inputType="numberDecimal" />
+                android:inputType="numberDecimal"
+                android:textColor="@color/black" />
         </LinearLayout>
 
         <LinearLayout
@@ -145,7 +156,8 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:gravity="center|right"
-                android:text="Numero de telephone : " />
+                android:text="Numero de telephone : "
+                android:textColor="@color/black" />
 
             <EditText
                 android:id="@+id/telephone"
@@ -154,14 +166,16 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="2dp"
                 android:ems="10"
-                android:inputType="numberDecimal" />
+                android:inputType="numberDecimal"
+                android:textColor="@color/black" />
         </LinearLayout>
 
         <Button
             android:id="@+id/btnSave"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Save" />
+            android:text="Save"
+            app:backgroundTint="@color/purple_200" />
 
 
     </LinearLayout>
