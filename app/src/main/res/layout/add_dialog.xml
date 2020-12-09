@@ -27,7 +27,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:gravity="center|right"
-                android:text="Adresse depart : "
+                android:text="departure address:"
                 android:textColor="@color/black" />
 
             <EditText
@@ -53,7 +53,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:gravity="center|right"
-                android:text="Date et Heure de depart : "
+                android:text="Date of departure:"
                 android:textColor="@color/black" />
 
             <EditText
@@ -79,7 +79,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:gravity="center|right"
-                android:text="Adresse destination : "
+                android:text="Destination address:"
                 android:textColor="@color/black" />
 
             <EditText
@@ -104,7 +104,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:gravity="center|right"
-                android:text="Nombre de place : "
+                android:text="Number of places :"
                 android:textColor="@color/black" />
 
 
@@ -130,7 +130,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:gravity="center|right"
-                android:text="Prix : "
+                android:text="Price:"
                 android:textColor="@color/black" />
 
 
@@ -156,7 +156,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:gravity="center|right"
-                android:text="Numero de telephone : "
+                android:text="Telephone number:"
                 android:textColor="@color/black" />
 
             <EditText

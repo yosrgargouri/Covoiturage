@@ -48,7 +48,7 @@
                 android:layout_height="30dp"
                 android:layout_marginLeft="20dp"
                 android:gravity="center|right"
-                android:text="Adresse depart : "
+                android:text="Departure address:"
                 android:textColor="@color/black" />
 
             <TextView
@@ -59,7 +59,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:gravity="center|left"
-                android:text="heure de depart"
+                android:text="Departure address"
                 android:textColor="@color/black" />
 
         </LinearLayout>
@@ -72,10 +72,10 @@
                 android:id="@+id/labelHeureDepart"
                 android:layout_width="150dp"
                 android:layout_height="30dp"
-                android:textColor="@color/black"
                 android:layout_marginLeft="20dp"
                 android:gravity="center|right"
-                android:text="Heure de depart : " />
+                android:text="Date of departure:"
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/heureDepart"
@@ -84,9 +84,9 @@
                 android:layout_below="@+id/labelHeureDepart"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:textColor="@color/black"
                 android:gravity="center|left"
-                android:text="heure de depart" />
+                android:text="Date of departure"
+                android:textColor="@color/black" />
 
         </LinearLayout>
 
@@ -102,8 +102,8 @@
                 android:layout_height="30dp"
                 android:layout_marginLeft="20dp"
                 android:gravity="center|right"
-                android:textColor="@color/black"
-                android:text="Adresse destination : " />
+                android:text="Destination address:"
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/adresseDestination"
@@ -111,10 +111,10 @@
                 android:layout_height="30dp"
                 android:layout_below="@+id/labeLadresseDestination"
                 android:layout_marginLeft="10dp"
-                android:textColor="@color/black"
                 android:layout_marginRight="10dp"
                 android:gravity="center|left"
-                android:text="adresse destination" />
+                android:text="Destination address:"
+                android:textColor="@color/black" />
         </LinearLayout>
 
         <LinearLayout
@@ -128,8 +128,8 @@
                 android:layout_height="30dp"
                 android:layout_marginLeft="20dp"
                 android:gravity="center|right"
-                android:textColor="@color/black"
-                android:text="Nombre de place : " />
+                android:text="Number of places :"
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/nombrePlace"
@@ -138,9 +138,9 @@
                 android:layout_below="@+id/labelNombrePlace"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:textColor="@color/black"
                 android:gravity="center|left"
-                android:text="nombre de place" />
+                android:text="Number of places "
+                android:textColor="@color/black" />
         </LinearLayout>
 
         <LinearLayout
@@ -154,8 +154,8 @@
                 android:layout_height="30dp"
                 android:layout_marginLeft="20dp"
                 android:gravity="center|right"
-                android:textColor="@color/black"
-                android:text="Prix : " />
+                android:text="Price:"
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/prix"
@@ -163,10 +163,10 @@
                 android:layout_height="30dp"
                 android:layout_below="@+id/labeLprix"
                 android:layout_marginLeft="10dp"
-                android:textColor="@color/black"
                 android:layout_marginRight="10dp"
                 android:gravity="center|left"
-                android:text="prix" />
+                android:text="Price"
+                android:textColor="@color/black" />
         </LinearLayout>
 
         <LinearLayout
@@ -179,20 +179,20 @@
                 android:layout_width="150dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="20dp"
-                android:textColor="@color/black"
                 android:gravity="center|right"
-                android:text="Numero de telephone : " />
+                android:text="Telephone number:"
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/telephone"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:textColor="@color/black"
                 android:layout_below="@+id/labelTelephone"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:gravity="center|left"
-                android:text="numero de telephone" />
+                android:text="Telephone number"
+                android:textColor="@color/black" />
         </LinearLayout>
 
 
