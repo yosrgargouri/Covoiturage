@@ -1,202 +1,201 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/images"
+    android:background="@drawable/capture5"
     android:orientation="vertical"
     android:weightSum="100">
 
 
     <TextView
         android:id="@+id/fullName2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.TextView"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
         android:gravity="center"
         android:text="Full name"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/email"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         tools:ignore="DuplicateIds" />
 
     <TextView
         android:id="@+id/email"
-        android:layout_width="0dp"
-        android:layout_height="23dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Email"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/adresseDepart"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textStyle="italic"
         tools:ignore="DuplicateIds" />
 
-    <TextView
-        android:id="@+id/labelAdresseDepart"
-        android:layout_width="206dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="23dp"
-        android:gravity="center|right"
-        android:text="Adresse depart : "
-        android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/email" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="199dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:weightSum="100">
 
-    <TextView
-        android:id="@+id/adresseDepart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="180dp"
-        android:layout_marginEnd="88dp"
-        android:gravity="center|left"
-        android:text="adresse de depart"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/labelAdresseDepart"
-        app:layout_constraintTop_toTopOf="parent" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/labelHeureDepart"
-        android:layout_width="206dp"
-        android:layout_height="wrap_content"
-        android:gravity="center|right"
-        android:text="Heure de depart : "
-        android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelAdresseDepart" />
+            <TextView
+                android:id="@+id/labelAdresseDepart"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
+                android:gravity="center|right"
+                android:text="Adresse depart : "
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/adresseDepart"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_below="@+id/labelAdresseDepart"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center|left"
+                android:text="heure de depart"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/labelHeureDepart"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:textColor="@color/black"
+                android:layout_marginLeft="20dp"
+                android:gravity="center|right"
+                android:text="Heure de depart : " />
+
+            <TextView
+                android:id="@+id/heureDepart"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_below="@+id/labelHeureDepart"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/black"
+                android:gravity="center|left"
+                android:text="heure de depart" />
+
+        </LinearLayout>
 
 
-    <TextView
-        android:id="@+id/heureDepart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center|left"
-        android:text="heure de depart"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.018"
-        app:layout_constraintStart_toEndOf="@+id/labelHeureDepart"
-        app:layout_constraintTop_toBottomOf="@+id/adresseDepart" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/labeLadresseDestination"
-        android:layout_width="206dp"
-        android:layout_height="wrap_content"
-        android:gravity="center|right"
-        android:text="Adresse destination : "
-        android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelHeureDepart" />
+            <TextView
+                android:id="@+id/labeLadresseDestination"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
+                android:gravity="center|right"
+                android:textColor="@color/black"
+                android:text="Adresse destination : " />
 
-    <TextView
-        android:id="@+id/adresseDestination"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center|left"
-        android:text="adresse destination"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/labeLadresseDestination"
-        app:layout_constraintTop_toBottomOf="@+id/heureDepart" />
+            <TextView
+                android:id="@+id/adresseDestination"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_below="@+id/labeLadresseDestination"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/black"
+                android:layout_marginRight="10dp"
+                android:gravity="center|left"
+                android:text="adresse destination" />
+        </LinearLayout>
 
-    <TextView
-        android:id="@+id/labelNombrePlace"
-        android:layout_width="206dp"
-        android:layout_height="wrap_content"
-        android:gravity="center|right"
-        android:text="Nombre de place : "
-        android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labeLadresseDestination" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/nombrePlace"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center|left"
-        android:text="nombre de place"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.02"
-        app:layout_constraintStart_toEndOf="@+id/labelNombrePlace"
-        app:layout_constraintTop_toBottomOf="@+id/adresseDestination" />
+            <TextView
+                android:id="@+id/labelNombrePlace"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
+                android:gravity="center|right"
+                android:textColor="@color/black"
+                android:text="Nombre de place : " />
 
-    <TextView
-        android:id="@+id/labeLprix"
-        android:layout_width="206dp"
-        android:layout_height="wrap_content"
-        android:gravity="center|right"
-        android:text="Prix : "
-        android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelNombrePlace" />
+            <TextView
+                android:id="@+id/nombrePlace"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_below="@+id/labelNombrePlace"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/black"
+                android:gravity="center|left"
+                android:text="nombre de place" />
+        </LinearLayout>
 
-    <TextView
-        android:id="@+id/prix"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center|left"
-        android:text="prix"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.01"
-        app:layout_constraintStart_toEndOf="@+id/labeLprix"
-        app:layout_constraintTop_toBottomOf="@+id/nombrePlace" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/labelTelephone"
-        android:layout_width="206dp"
-        android:layout_height="wrap_content"
-        android:gravity="center|right"
-        android:text="Numero de telephone : "
-        android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labeLprix" />
+            <TextView
+                android:id="@+id/labeLprix"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
+                android:gravity="center|right"
+                android:textColor="@color/black"
+                android:text="Prix : " />
 
-    <TextView
-        android:id="@+id/telephone"
-        android:layout_width="134dp"
-        android:layout_height="wrap_content"
-        android:gravity="center|left"
-        android:text="numero de telephone"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/labelTelephone"
-        app:layout_constraintTop_toBottomOf="@+id/prix"
-        app:layout_constraintVertical_bias="0.0" />
+            <TextView
+                android:id="@+id/prix"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_below="@+id/labeLprix"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/black"
+                android:layout_marginRight="10dp"
+                android:gravity="center|left"
+                android:text="prix" />
+        </LinearLayout>
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="59dp"
-        android:text="ADD"
-        app:backgroundTint="@color/purple_200"
-        app:layout_constraintBottom_toTopOf="@+id/progressBarRegister"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/labelTelephone" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-    <ProgressBar
-        android:id="@+id/progressBarRegister"
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="204dp"
-        android:indeterminate="true"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registerBtn"
-        app:layout_constraintVertical_bias="0.0"
-        tools:visibility="invisible" />
+            <TextView
+                android:id="@+id/labelTelephone"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
+                android:textColor="@color/black"
+                android:gravity="center|right"
+                android:text="Numero de telephone : " />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/telephone"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:textColor="@color/black"
+                android:layout_below="@+id/labelTelephone"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center|left"
+                android:text="numero de telephone" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>
