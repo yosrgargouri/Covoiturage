@@ -1,5 +1,6 @@
 package com.example.cov;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
@@ -11,9 +12,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.cov.model.Offre;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -41,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText mPrix;
     private EditText mTelephone;
     private Button saveBtn;
+    private FirebaseUser firebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         mListData = findViewById(R.id.listData);
         firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
         ArrayList<Offre> offres = new ArrayList<>();
         db = FirebaseDatabase.getInstance().getReference("offres");
 
@@ -116,6 +124,13 @@ public class MainActivity extends AppCompatActivity {
                 Integer telephone = Integer.parseInt(mTelephone.getText().toString());
 
                 Offre offre = new Offre();
+                if (firebaseUser != null) {
+                    // Name, email
+                    offre.setFull_name(firebaseUser.getDisplayName());
+                    offre.setEmail(firebaseUser.getEmail());
+                }
+                offre.setAdresse_depart(adresseDepart);
+                offre.setAdresse_depart(adresseDepart);
                 offre.setAdresse_depart(adresseDepart);
                 offre.setAdresse_destination(adresseDestination);
                 offre.setHeure_depart(heureDepart);
@@ -123,10 +138,21 @@ public class MainActivity extends AppCompatActivity {
                 offre.setPrix(prix);
                 offre.setTelephone(telephone);
 
-                if (db.push().setValue(offre).isComplete()) {
-                    mHeureDepart.setText("");
-                    dialog.cancel();
-                }
+                db.push().setValue(offre).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        dialog.cancel();
+                        Toast.makeText(MainActivity.this, "add with success.", Toast.LENGTH_SHORT).show();
+                    }
+
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error adding document", e);
+                        Toast.makeText(MainActivity.this, "add failed.", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
 
             }
         });
