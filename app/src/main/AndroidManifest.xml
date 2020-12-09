@@ -10,9 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.App">
-        <activity android:name="com.example.cov.MainActivityLogout"></activity>
-        <activity android:name="com.example.cov.LoginActivity"/>
-            <activity android:name="com.example.cov.MainActivity" >
+        <activity android:name="com.example.cov.MainActivity" />
+        <activity android:name="com.example.cov.MainActivityLogout" />
+        <activity android:name="com.example.cov.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,8 +19,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class MainActivityLogout extends AppCompatActivity {
+
+    private final static String TAG = "MainActivityLogout";
 
     private EditText mFullname, mEmail, mPassword, mPhone;
     private Button mRegisterBtn;
@@ -75,6 +79,7 @@ public class MainActivityLogout extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
+                                    userProfile();
                                     // Sign up success,
                                     Toast.makeText(MainActivityLogout.this, "User Created.", Toast.LENGTH_SHORT).show();
                                     FirebaseUser user = firebaseAuth.getCurrentUser();
@@ -104,5 +109,25 @@ public class MainActivityLogout extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
             }
         });
+    }
+
+    //Set UserDisplay Name
+    private void userProfile() {
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        if (user != null) {
+            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                    .setDisplayName(mFullname.getText().toString().trim())
+                    .build();
+
+            user.updateProfile(profileUpdates)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Log.w(TAG, "User profile updated.");
+                            }
+                        }
+                    });
+        }
     }
 }
