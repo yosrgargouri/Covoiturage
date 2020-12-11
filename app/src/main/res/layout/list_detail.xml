@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/capture5"
     android:orientation="vertical"
     android:weightSum="100">
 
@@ -33,7 +33,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="199dp"
+        android:layout_height="133dp"
         android:layout_marginTop="10dp"
         android:orientation="vertical"
         android:weightSum="100">
@@ -44,8 +44,8 @@
 
             <TextView
                 android:id="@+id/labelAdresseDepart"
-                android:layout_width="150dp"
-                android:layout_height="30dp"
+                android:layout_width="177dp"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:gravity="center|right"
                 android:text="Departure address:"
@@ -70,8 +70,8 @@
 
             <TextView
                 android:id="@+id/labelHeureDepart"
-                android:layout_width="150dp"
-                android:layout_height="30dp"
+                android:layout_width="177dp"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:gravity="center|right"
                 android:text="Date of departure:"
@@ -98,8 +98,8 @@
 
             <TextView
                 android:id="@+id/labeLadresseDestination"
-                android:layout_width="150dp"
-                android:layout_height="30dp"
+                android:layout_width="177dp"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:gravity="center|right"
                 android:text="Destination address:"
@@ -124,8 +124,8 @@
 
             <TextView
                 android:id="@+id/labelNombrePlace"
-                android:layout_width="150dp"
-                android:layout_height="30dp"
+                android:layout_width="177dp"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:gravity="center|right"
                 android:text="Number of places :"
@@ -143,59 +143,54 @@
                 android:textColor="@color/black" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/labeLprix"
-                android:layout_width="150dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="20dp"
-                android:gravity="center|right"
-                android:text="Price:"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/prix"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_below="@+id/labeLprix"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:gravity="center|left"
-                android:text="Price"
-                android:textColor="@color/black" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/labelTelephone"
-                android:layout_width="150dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="20dp"
-                android:gravity="center|right"
-                android:text="Telephone number:"
-                android:textColor="@color/black" />
-
-            <TextView
-                android:id="@+id/telephone"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_below="@+id/labelTelephone"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:gravity="center|left"
-                android:text="Telephone number"
-                android:textColor="@color/black" />
-        </LinearLayout>
-
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:orientation="horizontal">
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="97dp"
+            android:layout_height="match_parent"
+            android:text="Show details"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/ss" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="96dp"
+            android:layout_height="match_parent"
+            android:text="Send request"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/ss" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

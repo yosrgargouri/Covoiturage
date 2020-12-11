@@ -102,12 +102,12 @@ public class OffreListAdapter extends ArrayAdapter<Offre> {
 
         holder.email.setText(offre.getEmail());
         holder.fullName.setText(offre.getFull_name());
-        holder.telephone.setText(offre.getTelephone() != null ? offre.getTelephone().toString() : null);
+//        holder.telephone.setText(offre.getTelephone() != null ? offre.getTelephone().toString() : null);
         holder.adresseDestination.setText(offre.getAdresse_destination());
         holder.adresseDepart.setText(offre.getAdresse_depart());
         holder.heureDepart.setText(offre.getNombre_place() != null ? offre.getHeure_depart() : null);
         holder.nombrePlace.setText(offre.getNombre_place() != null ? offre.getNombre_place().toString() : null);
-        holder.prix.setText(offre.getPrix().toString());
+//        holder.prix.setText(offre.getPrix().toString());
 
 
         return convertView;
