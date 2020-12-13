@@ -4,21 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:weightSum="100">
+    android:padding="20dp"
+    tools:layout_editor_absoluteY="81dp">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="367dp"
+        android:layout_width="wrap_content"
+        android:layout_height="534dp"
         android:layout_marginTop="10dp"
-        android:layout_weight="@dimen/activity_horizontal_margin"
-        android:background="@drawable/_6390692_r_sum__flou_fond_d_grad__avec_la_tendance_pastel_rose_pourpre_violet_jaune_et_bleu_pour_les_concepts_daigne_"
+        android:background="@drawable/capture10"
         android:orientation="vertical"
         android:weightSum="100">
 
         <TextView
-            android:id="@+id/fullName4"
+            android:id="@+id/fullNameDetail"
             style="@style/Widget.AppCompat.TextView"
             android:layout_width="match_parent"
             android:layout_height="30dp"
@@ -30,7 +30,7 @@
             tools:ignore="DuplicateIds" />
 
         <TextView
-            android:id="@+id/email3"
+            android:id="@+id/emailDetail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -42,11 +42,11 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="39dp">
 
             <TextView
                 android:id="@+id/labelAdresseDepart"
-                android:layout_width="177dp"
+                android:layout_width="140dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:gravity="center|right"
@@ -54,9 +54,9 @@
                 android:textColor="@color/black" />
 
             <TextView
-                android:id="@+id/adresseDepart"
-                android:layout_width="207dp"
-                android:layout_height="30dp"
+                android:id="@+id/adresseDepartDetail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_below="@+id/labelAdresseDepart"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
@@ -72,7 +72,8 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="177dp"
+                android:id="@+id/labelDepartureCity"
+                android:layout_width="140dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:gravity="center|right"
@@ -80,9 +81,10 @@
                 android:textColor="@color/black" />
 
             <TextView
-                android:layout_width="209dp"
+                android:id="@+id/departureCityDetail"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/labeLadresseDestination"
+                android:layout_below="@+id/labelDepartureCity"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:gravity="center|left"
@@ -92,11 +94,11 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="39dp">
 
             <TextView
                 android:id="@+id/labelHeureDepart"
-                android:layout_width="177dp"
+                android:layout_width="140dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:gravity="center|right"
@@ -104,8 +106,8 @@
                 android:textColor="@color/black" />
 
             <TextView
-                android:id="@+id/heureDepart"
-                android:layout_width="204dp"
+                android:id="@+id/heureDepartDetail"
+                android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_below="@+id/labelHeureDepart"
                 android:layout_marginLeft="10dp"
@@ -119,12 +121,12 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="39dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/labeLadresseDestination"
-                android:layout_width="177dp"
+                android:layout_width="140dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:gravity="center|right"
@@ -132,7 +134,7 @@
                 android:textColor="@color/black" />
 
             <TextView
-                android:id="@+id/adresseDestination"
+                android:id="@+id/adresseDestinationDetail"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_below="@+id/labeLadresseDestination"
@@ -145,11 +147,12 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="33dp"
+            android:layout_height="39dp"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="177dp"
+                android:id="@+id/labelDestinationCity"
+                android:layout_width="140dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:gravity="center|right"
@@ -157,9 +160,10 @@
                 android:textColor="@color/black" />
 
             <TextView
-                android:layout_width="196dp"
+                android:id="@+id/destinationCityDetail"
+                android:layout_width="match_parent"
                 android:layout_height="33dp"
-                android:layout_below="@+id/labeLadresseDestination"
+                android:layout_below="@+id/labelDestinationCity"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:gravity="center|left"
@@ -169,12 +173,12 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="39dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/labelNombrePlace"
-                android:layout_width="177dp"
+                android:layout_width="140dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:gravity="center|right"
@@ -182,7 +186,7 @@
                 android:textColor="@color/black" />
 
             <TextView
-                android:id="@+id/nombrePlace"
+                android:id="@+id/nombrePlaceDetail"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_below="@+id/labelNombrePlace"
@@ -195,12 +199,12 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="39dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/labeLprix"
-                android:layout_width="177dp"
+                android:layout_width="140dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:gravity="center|right"
@@ -208,7 +212,7 @@
                 android:textColor="@color/black" />
 
             <TextView
-                android:id="@+id/prix"
+                android:id="@+id/prixDetail"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_below="@+id/labeLprix"
@@ -221,12 +225,12 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="39dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/labelTelephone"
-                android:layout_width="177dp"
+                android:layout_width="140dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:gravity="center|right"
@@ -234,7 +238,7 @@
                 android:textColor="@color/black" />
 
             <TextView
-                android:id="@+id/telephone"
+                android:id="@+id/telephoneDetail"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_below="@+id/labelTelephone"
@@ -242,6 +246,32 @@
                 android:layout_marginRight="10dp"
                 android:gravity="center|left"
                 android:text="Telephone number"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/labeldescription"
+                android:layout_width="140dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:gravity="center|right"
+                android:text="Description:"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/descriptionDetail"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_below="@+id/labeldescription"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:gravity="center|left"
+                android:text="desc........."
                 android:textColor="@color/black" />
         </LinearLayout>
 

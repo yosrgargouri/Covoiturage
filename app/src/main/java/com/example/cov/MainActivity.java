@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cov.model.Offre;
@@ -47,6 +48,17 @@ public class MainActivity extends AppCompatActivity {
     private EditText mTelephone;
     private Button saveBtn;
     private FirebaseUser firebaseUser;
+
+
+//    BtnClickListener btnClickListener = new BtnClickListener() {
+
+  //      @Override
+    //    public void onBtnClick(int position) {
+            // TODO Auto-generated method stub
+            // Call your function which creates and shows the dialog here
+      //  }
+    //};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    //TODO
+
     public void displayDialogAdd() {
 
         Dialog dialog = new Dialog(MainActivity.this);
@@ -157,7 +169,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
 
     public void logout(View view) {
         FirebaseAuth.getInstance().signOut();

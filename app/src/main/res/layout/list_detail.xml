@@ -157,7 +157,7 @@
             android:layout_weight="1" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnShowDetails"
             android:layout_width="97dp"
             android:layout_height="match_parent"
             android:text="Show details"
@@ -172,7 +172,7 @@
             android:layout_weight="1" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/btnSendRequest"
             android:layout_width="96dp"
             android:layout_height="match_parent"
             android:text="Send request"

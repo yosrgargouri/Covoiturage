@@ -1,9 +1,13 @@
 package com.example.cov;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.view.View;
 
@@ -19,6 +23,18 @@ public class OffreListAdapter extends ArrayAdapter<Offre> {
     private Context mContext;
     private int mResource;
     private int lastPosition = -1;
+    private BtnClickListener mClickListener = null;
+
+    //Details:
+    TextView emailDetail;
+    TextView fullNameDetail;
+    TextView telephoneDetail;
+    TextView adresseDestinationDetail;
+    TextView adresseDepartDetail;
+    TextView heureDepartDetail;
+    TextView nombrePlaceDetail;
+    TextView prixDetail;
+    TextView descriptionDetail;
 
     /**
      * Holds variables in a View
@@ -33,6 +49,7 @@ public class OffreListAdapter extends ArrayAdapter<Offre> {
         TextView nombrePlace;
         TextView prix;
         TextView description;
+        Button buttonDetails;
     }
 
     /**
@@ -48,8 +65,16 @@ public class OffreListAdapter extends ArrayAdapter<Offre> {
         mResource = resource;
     }
 
+    public OffreListAdapter(Context context, int resource, ArrayList<Offre> objects, BtnClickListener listener) {
+        super(context, resource, objects);
+        mContext = context;
+        mResource = resource;
+        mClickListener = listener;
+    }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
 
         //create the view result for showing the animation
         final View result;
@@ -87,6 +112,7 @@ public class OffreListAdapter extends ArrayAdapter<Offre> {
             holder.prix = (TextView) convertView.findViewById(R.id.prix);
 //            TODO
 //            holder.description = (TextView) convertView.findViewById(R.id.description);
+            holder.buttonDetails = (Button) convertView.findViewById(R.id.btnShowDetails);
 
 
             result = convertView;
@@ -109,7 +135,38 @@ public class OffreListAdapter extends ArrayAdapter<Offre> {
         holder.nombrePlace.setText(offre.getNombre_place() != null ? offre.getNombre_place().toString() : null);
 //        holder.prix.setText(offre.getPrix().toString());
 
-
+        holder.buttonDetails.setTag(position); //For passing the list item index
+        holder.buttonDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+              //  if(mClickListener != null){
+                    Dialog dialog = new Dialog(mContext);
+                    dialog.setContentView(R.layout.detail);
+                    heureDepartDetail = (TextView) dialog.findViewById(R.id.heureDepartDetail);
+                    heureDepartDetail.setText(offre.getHeure_depart());
+                    adresseDepartDetail = (TextView) dialog.findViewById(R.id.adresseDepartDetail);
+                    adresseDepartDetail.setText(offre.getAdresse_depart());
+                    adresseDestinationDetail = (TextView) dialog.findViewById(R.id.adresseDestinationDetail);
+                    adresseDestinationDetail.setText(offre.getAdresse_destination());
+                    prixDetail = (TextView) dialog.findViewById(R.id.prixDetail);
+                    prixDetail.setText(offre.getPrix() != null ? offre.getPrix().toString() : null);
+                    emailDetail = (TextView) dialog.findViewById(R.id.emailDetail);
+                    emailDetail.setText(offre.getEmail());
+                    fullNameDetail = (TextView) dialog.findViewById(R.id.fullNameDetail);
+                    fullNameDetail.setText(offre.getFull_name());
+                    descriptionDetail = (TextView) dialog.findViewById(R.id.descriptionDetail);
+                    descriptionDetail.setText(offre.getDescription());
+                    nombrePlaceDetail = (TextView) dialog.findViewById(R.id.nombrePlaceDetail);
+                    nombrePlaceDetail.setText(offre.getNombre_place() != null ? offre.getNombre_place().toString() : null);
+                    telephoneDetail = (TextView) dialog.findViewById(R.id.telephoneDetail);
+                    telephoneDetail.setText(offre.getTelephone() != null ? offre.getTelephone().toString() : null);
+                    dialog.show();
+               // } else
+               //     mClickListener.onBtnClick((Integer) v.getTag());
+            }
+        });
         return convertView;
     }
+
 }
