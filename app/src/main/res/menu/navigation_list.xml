@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menuProfile"
+        android:title="Profile"/>
+    <item
+        android:id="@+id/menuNotifications"
+        android:title="Notifications"/>
+    <item android:title="Others" >
+        <menu>
+            <item
+                android:id="@+id/menuSetting"
+                android:title="Setting"/>
+            <item
+                android:id="@+id/menuLogout"
+                android:title="Logout"/>
+
+        </menu>
+    </item>
+
+
+
+</menu>

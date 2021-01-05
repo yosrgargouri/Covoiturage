@@ -8,35 +8,36 @@
     android:weightSum="100">
 
 
-    <TextView
-        android:id="@+id/fullName2"
-        style="@style/Widget.AppCompat.TextView"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:gravity="center"
-        android:text="Full name"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        tools:ignore="DuplicateIds" />
-
-    <TextView
-        android:id="@+id/email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Email"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textStyle="italic"
-        tools:ignore="DuplicateIds" />
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="133dp"
+        android:layout_height="222dp"
         android:layout_marginTop="10dp"
+        android:background="#E8DBFF"
         android:orientation="vertical"
         android:weightSum="100">
+
+        <TextView
+            android:id="@+id/fullName2"
+            style="@style/Widget.AppCompat.TextView"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:text="Full name"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            tools:ignore="DuplicateIds" />
+
+        <TextView
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Email"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textStyle="italic"
+            tools:ignore="DuplicateIds" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -143,48 +144,48 @@
                 android:textColor="@color/black" />
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:orientation="horizontal">
 
-    </LinearLayout>
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="58dp"
-        android:orientation="horizontal">
+            <Button
+                android:id="@+id/btnShowDetails"
+                android:layout_width="76dp"
+                android:layout_height="wrap_content"
+                android:text="Show details"
+                android:textColor="@color/black"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                app:backgroundTint="@color/ss" />
 
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
 
-        <Button
-            android:id="@+id/btnShowDetails"
-            android:layout_width="97dp"
-            android:layout_height="match_parent"
-            android:text="Show details"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            app:backgroundTint="@color/ss" />
+            <Button
+                android:id="@+id/btnSendRequest"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:text="Send request"
+                android:textColor="@color/black"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                app:backgroundTint="@color/ss" />
 
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </LinearLayout>
 
-        <Button
-            android:id="@+id/btnSendRequest"
-            android:layout_width="96dp"
-            android:layout_height="match_parent"
-            android:text="Send request"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            app:backgroundTint="@color/ss" />
 
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
