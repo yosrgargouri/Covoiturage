@@ -26,10 +26,8 @@
                 android:id="@+id/imageMenu"
                 android:layout_width="36dp"
                 android:layout_height="35dp"
-                android:contentDescription="@string/app_name"
                 android:tint="@color/black"
-                tools:ignore="MissingConstraints"
-                tools:src="@drawable/ic_menu" />
+                android:src="@drawable/menu"/>
 
             <TextView
                 android:id="@+id/textmenu"
@@ -101,7 +99,7 @@
             tools:fastScrollAlwaysVisible="true" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/buttonFilter"
             android:layout_width="50dp"
             android:layout_height="34dp"
             android:background="@color/ss"

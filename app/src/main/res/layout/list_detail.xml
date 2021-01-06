@@ -133,7 +133,7 @@
                 android:textColor="@color/black" />
 
             <TextView
-                android:id="@+id/nombrePlace"
+                android:id="@+id/destinationCitySh"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:layout_below="@+id/labelNombrePlace"

@@ -23,10 +23,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.App">
-        <activity android:name="com.example.cov.edit_profile" />
-        <activity android:name="com.example.cov.LoginActivity" />
+        <activity android:name="com.example.cov.EditProfile" />
         <activity android:name="com.example.cov.MainActivityLogout" />
-        <activity android:name="com.example.cov.navigation">
+        <activity android:name="com.example.cov.Navigation"/>
+        <activity android:name="com.example.cov.LoginActivity"/>
+            <activity android:name="com.example.cov.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

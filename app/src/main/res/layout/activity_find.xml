@@ -30,6 +30,7 @@
                 android:textStyle="bold" />
 
             <EditText
+                android:id="@+id/departureCitySh"
                 android:layout_width="178dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="10dp"
@@ -57,6 +58,7 @@
                 android:textStyle="bold" />
 
             <EditText
+                android:id="@+id/destinationCitySh"
                 android:layout_width="178dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="10dp"
@@ -83,7 +85,7 @@
 
 
             <EditText
-                android:id="@+id/nombrePlace"
+                android:id="@+id/nombrePlaceSh"
                 android:layout_width="178dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="10dp"
@@ -118,10 +120,10 @@
                         android:layout_weight="1" />
 
                     <Button
-                        android:id="@+id/btnSave"
-                        android:layout_width="68dp"
+                        android:id="@+id/btnSearch"
+                        android:layout_width="74dp"
                         android:layout_height="match_parent"
-                        android:text="Save"
+                        android:text="Search"
                         android:textColor="@color/black"
                         android:textSize="12sp"
                         app:backgroundTint="@color/purple_200" />

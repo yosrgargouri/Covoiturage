@@ -1,18 +1,21 @@
 package com.example.cov;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cov.model.Offre;
@@ -28,8 +31,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,29 +49,34 @@ public class MainActivity extends AppCompatActivity {
     private EditText mNombrePlace;
     private EditText mPrix;
     private EditText mTelephone;
+    private EditText departureCitySh;
+    private EditText destinationCitySh;
+    private EditText nombrePlaceSh;
     private Button saveBtn;
+    private Button btnSearch;
     private FirebaseUser firebaseUser;
+    private ArrayList<Offre> offres = new ArrayList<>();
 
 
 //    BtnClickListener btnClickListener = new BtnClickListener() {
 
-  //      @Override
+    //      @Override
     //    public void onBtnClick(int position) {
-            // TODO Auto-generated method stub
-            // Call your function which creates and shows the dialog here
-      //  }
+    // TODO Auto-generated method stub
+    // Call your function which creates and shows the dialog here
+    //  }
     //};
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mListData = findViewById(R.id.listData);
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        DrawerLayout relativeLayout2 = findViewById(R.id.relativeLayout2);
 
-        ArrayList<Offre> offres = new ArrayList<>();
         db = FirebaseDatabase.getInstance().getReference("offres");
 
         // Read from the database
@@ -103,8 +111,53 @@ public class MainActivity extends AppCompatActivity {
                 displayDialogAdd();
             }
         });
+        Button mButtonFilter = (Button) findViewById(R.id.buttonFilter);
+        mButtonFilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayDialogFilter();
+            }
+        });
+
+        findViewById(R.id.imageMenu).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                relativeLayout2.openDrawer(GravityCompat.START);
+
+            }
+        });
     }
 
+
+    public void displayDialogFilter() {
+
+        Dialog dialog = new Dialog(MainActivity.this);
+        dialog.setTitle("ADD REQUEST");
+        dialog.setContentView(R.layout.activity_find);
+        dialog.show();
+
+        //Find widgets
+        departureCitySh = dialog.findViewById(R.id.departureCitySh);
+        destinationCitySh = dialog.findViewById(R.id.destinationCitySh);
+        nombrePlaceSh = dialog.findViewById(R.id.nombrePlaceSh);
+
+
+        btnSearch = dialog.findViewById(R.id.btnSearch);
+
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onClick(View v) {
+                ArrayList<Offre> offresFilter = (ArrayList<Offre>)
+                        offres.stream().filter(elt -> !departureCitySh.getText().toString().isEmpty() ? elt.getAdresse_depart().equalsIgnoreCase(departureCitySh.getText().toString()) : true
+                                && !destinationCitySh.getText().toString().isEmpty() ? elt.getAdresse_destination().equalsIgnoreCase(destinationCitySh.getText().toString()) : true
+                                && elt.getNombre_place() >= (!nombrePlaceSh.getText().toString().isEmpty() ? Integer.parseInt(nombrePlaceSh.getText().toString()) : 0)
+                        ).collect(Collectors.toList());
+                mListData.setAdapter(new OffreListAdapter(MainActivity.this, R.layout.list_detail, offresFilter));
+                dialog.cancel();
+            }
+        });
+    }
 
     public void displayDialogAdd() {
 
@@ -118,11 +171,11 @@ public class MainActivity extends AppCompatActivity {
         mHeureDepart = dialog.findViewById(R.id.heureDepart);
         mAdresseDestination = dialog.findViewById(R.id.adresseDestination);
         mAdresseDepart = dialog.findViewById(R.id.adresseDepart);
-        mNombrePlace = dialog.findViewById(R.id.nombrePlace);
+        mNombrePlace = dialog.findViewById(R.id.destinationCitySh);
         mPrix = dialog.findViewById(R.id.prix);
         mTelephone = dialog.findViewById(R.id.telephone);
 
-        saveBtn = dialog.findViewById(R.id.btnSave);
+        saveBtn = dialog.findViewById(R.id.btnSearch);
 
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -174,6 +227,10 @@ public class MainActivity extends AppCompatActivity {
         FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(getApplicationContext(), LoginActivity.class));
         finish();
+    }
+
+    public void clearFilter(View view) {
+        mListData.setAdapter(new OffreListAdapter(MainActivity.this, R.layout.list_detail, offres));
     }
 
 }

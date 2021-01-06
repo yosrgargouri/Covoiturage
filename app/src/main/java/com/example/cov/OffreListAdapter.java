@@ -6,8 +6,6 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.view.View;
 
@@ -108,7 +106,7 @@ public class OffreListAdapter extends ArrayAdapter<Offre> {
             holder.adresseDestination = (TextView) convertView.findViewById(R.id.adresseDestination);
             holder.adresseDepart = (TextView) convertView.findViewById(R.id.adresseDepart);
             holder.heureDepart = (TextView) convertView.findViewById(R.id.heureDepart);
-            holder.nombrePlace = (TextView) convertView.findViewById(R.id.nombrePlace);
+            holder.nombrePlace = (TextView) convertView.findViewById(R.id.destinationCitySh);
             holder.prix = (TextView) convertView.findViewById(R.id.prix);
 //            TODO
 //            holder.description = (TextView) convertView.findViewById(R.id.description);
