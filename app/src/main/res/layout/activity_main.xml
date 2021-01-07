@@ -75,7 +75,7 @@
 
         <TextView
             android:id="@+id/textView2"
-            android:layout_width="142dp"
+            android:layout_width="wrap_content"
             android:layout_height="43dp"
             android:layout_marginTop="24dp"
             android:fontFamily="@font/aladin"
@@ -86,22 +86,22 @@
             android:textSize="30sp"
             android:typeface="sans"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.04"
+            app:layout_constraintHorizontal_bias="0.058"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/layoutToolBar"
             tools:ignore="MissingConstraints" />
 
         <ListView
             android:id="@+id/listData"
-            android:layout_width="401dp"
-            android:layout_height="546dp"
+            android:layout_width="385dp"
+            android:layout_height="517dp"
 
 
             app:layout_constraintBottom_toTopOf="@+id/textView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2"
+            app:layout_constraintVertical_bias="0.619"
             tools:fastScrollAlwaysVisible="true" />
 
         <Button
@@ -109,7 +109,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="124dp"
-            android:layout_marginBottom="660dp"
+            android:layout_marginBottom="612dp"
             android:background="@color/ss"
             android:shadowColor="@color/purple_200"
             android:text="Filter"
@@ -118,6 +118,7 @@
             android:textColorHint="@color/purple_200"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.507"
             app:layout_constraintStart_toEndOf="@+id/textView2" />
 
         <ImageView
@@ -125,14 +126,13 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginTop="36dp"
+            android:onClick="clearFilter"
+            android:tint="@color/black"
             app:layout_constraintEnd_toStartOf="@+id/buttonFilter"
-            app:layout_constraintHorizontal_bias="0.932"
+            app:layout_constraintHorizontal_bias="0.788"
             app:layout_constraintStart_toEndOf="@+id/textView2"
             app:layout_constraintTop_toBottomOf="@+id/layoutToolBar"
-            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel"
-            android:tint="@color/black"
-            android:onClick="clearFilter"
-            />
+            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
