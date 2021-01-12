@@ -10,6 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/_6390692_r_sum__flou_fond_d_grad__avec_la_tendance_pastel_rose_pourpre_violet_jaune_et_bleu_pour_les_concepts_daigne_"
         tools:layout_editor_absoluteY="81dp">
 
         <LinearLayout
@@ -17,7 +18,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginBottom="21dp"
-            android:background="#B388FF"
+            android:background="@color/ss"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingStart="15dp"
@@ -110,7 +111,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="124dp"
             android:layout_marginBottom="612dp"
-            android:background="@color/ss"
+            android:background="@color/purple_200"
             android:shadowColor="@color/purple_200"
             android:text="Filter"
             android:textColor="@color/black"

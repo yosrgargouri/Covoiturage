@@ -4,18 +4,24 @@
 
     <item
         android:id="@+id/menuProfile"
-        android:title="Profile"/>
+        android:title="Profile"
+        android:icon="@drawable/img_323984"
+        />
     <item
         android:id="@+id/menuNotifications"
-        android:title="Notifications"/>
+        android:title="Notifications"
+        android:icon="@drawable/notification_icon_png_2"
+        />
     <item android:title="Others" >
         <menu>
             <item
                 android:id="@+id/menuSetting"
-                android:title="Setting"/>
+                android:title="Setting"
+                android:icon="@drawable/oip"/>
             <item
                 android:id="@+id/menuLogout"
-                android:title="Logout"/>
+                android:title="Logout"
+                android:icon="@drawable/sign_out_icon_7"/>
 
         </menu>
     </item>
