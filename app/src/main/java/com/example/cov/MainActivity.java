@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -20,6 +21,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.cov.model.Offre;
+import com.example.cov.model.OffreDetail;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,6 +39,15 @@ import java.util.stream.Collectors;
 
 public class MainActivity extends AppCompatActivity {
 
+    public interface DataStatus {
+        void DataIsLoded(List<Offre> offres, List<String> keys);
+
+        void DataInInserted();
+
+        void DataIsUpdated();
+
+        void DataIsDeleted();
+    }
 
     private final static String TAG = "MainActivity";
 
@@ -56,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
     private Button saveBtn;
     private Button btnSearch;
     private FirebaseUser firebaseUser;
-    private ArrayList<Offre> offres = new ArrayList<>();
+    private ArrayList<OffreDetail> offres = new ArrayList<>();
 
 
 //    BtnClickListener btnClickListener = new BtnClickListener() {
@@ -68,6 +79,18 @@ public class MainActivity extends AppCompatActivity {
     //  }
     //};
 
+    BtnClickListener btnRequestListener = new BtnClickListener() {
+
+        @Override
+        public void onBtnClick(Offre offre, String key) {
+            // TODO Auto-generated method stub
+            // Call your function which creates and shows the dialog here
+//            changeMoneda(position);
+            offre.setNombre_place(offre.getNombre_place() - 1);
+            updateOffre(key,offre);
+            Log.w(TAG, "offre : {" + offre.toString() + "}");
+        }
+    };
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -91,8 +114,10 @@ public class MainActivity extends AppCompatActivity {
                     offres.clear();
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
                         Offre offre = ds.getValue(Offre.class);
-                        offres.add(offre);
-                        mListData.setAdapter(new OffreListAdapter(MainActivity.this, R.layout.list_detail, offres));
+                        OffreDetail offreDetail = new OffreDetail(offre);
+                        offreDetail.setKey(ds.getKey());
+                        offres.add(offreDetail);
+                        mListData.setAdapter(new OffreListAdapter(MainActivity.this, R.layout.list_detail, offres, btnRequestListener));
                     }
                 }
             }
@@ -103,7 +128,14 @@ public class MainActivity extends AppCompatActivity {
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
-        mListData.setAdapter(new OffreListAdapter(MainActivity.this, R.layout.list_detail, offres));
+        mListData.setAdapter(new OffreListAdapter(MainActivity.this, R.layout.list_detail, offres, btnRequestListener));
+
+        mListData.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        });
 
         Button mButtonPlus = (Button) findViewById(R.id.buttonPlus);
         mButtonPlus.setOnClickListener(new View.OnClickListener() {
@@ -149,12 +181,12 @@ public class MainActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View v) {
-                ArrayList<Offre> offresFilter = (ArrayList<Offre>)
+                ArrayList<OffreDetail> offresFilter = (ArrayList<OffreDetail>)
                         offres.stream().filter(elt -> !departureCitySh.getText().toString().isEmpty() ? elt.getAdresse_depart().equalsIgnoreCase(departureCitySh.getText().toString()) : true
                                 && !destinationCitySh.getText().toString().isEmpty() ? elt.getAdresse_destination().equalsIgnoreCase(destinationCitySh.getText().toString()) : true
                                 && elt.getNombre_place() >= (!nombrePlaceSh.getText().toString().isEmpty() ? Integer.parseInt(nombrePlaceSh.getText().toString()) : 0)
                         ).collect(Collectors.toList());
-                mListData.setAdapter(new OffreListAdapter(MainActivity.this, R.layout.list_detail, offresFilter));
+                mListData.setAdapter(new OffreListAdapter(MainActivity.this, R.layout.list_detail, offresFilter, btnRequestListener));
                 dialog.cancel();
             }
         });
@@ -204,7 +236,8 @@ public class MainActivity extends AppCompatActivity {
                 offre.setPrix(prix);
                 offre.setTelephone(telephone);
 
-                db.push().setValue(offre).addOnSuccessListener(new OnSuccessListener<Void>() {
+                String key = db.push().getKey();
+                db.child(key).setValue(offre).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         dialog.cancel();
@@ -231,7 +264,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void clearFilter(View view) {
-        mListData.setAdapter(new OffreListAdapter(MainActivity.this, R.layout.list_detail, offres));
+        mListData.setAdapter(new OffreListAdapter(MainActivity.this, R.layout.list_detail, offres, btnRequestListener));
+    }
+
+    public void updateOffre(String key, Offre offre) {
+        db.child(key).setValue(offre).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Toast.makeText(MainActivity.this, "updated.", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 }

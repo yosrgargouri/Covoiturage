@@ -10,18 +10,19 @@ import android.widget.TextView;
 import android.view.View;
 
 
-import com.example.cov.model.Offre;
+import com.example.cov.model.OffreDetail;
 
 import java.util.ArrayList;
 
-public class OffreListAdapter extends ArrayAdapter<Offre> {
+public class OffreListAdapter extends ArrayAdapter<OffreDetail> {
 
     private static final String TAG = "OffreListAdapter";
 
+    private String key;
     private Context mContext;
     private int mResource;
     private int lastPosition = -1;
-    private BtnClickListener mClickListener = null;
+    private BtnClickListener mClickRequestListener = null;
 
     //Details:
     TextView emailDetail;
@@ -48,6 +49,7 @@ public class OffreListAdapter extends ArrayAdapter<Offre> {
         TextView prix;
         TextView description;
         Button buttonDetails;
+        Button buttonRequest;
     }
 
     /**
@@ -57,17 +59,17 @@ public class OffreListAdapter extends ArrayAdapter<Offre> {
      * @param resource
      * @param objects
      */
-    public OffreListAdapter(Context context, int resource, ArrayList<Offre> objects) {
+    public OffreListAdapter(Context context, int resource, ArrayList<OffreDetail> objects) {
         super(context, resource, objects);
         mContext = context;
         mResource = resource;
     }
 
-    public OffreListAdapter(Context context, int resource, ArrayList<Offre> objects, BtnClickListener listener) {
+    public OffreListAdapter(Context context, int resource, ArrayList<OffreDetail> objects, BtnClickListener clickRequestListener) {
         super(context, resource, objects);
         mContext = context;
         mResource = resource;
-        mClickListener = listener;
+        mClickRequestListener = clickRequestListener;
     }
 
     @Override
@@ -89,7 +91,8 @@ public class OffreListAdapter extends ArrayAdapter<Offre> {
         String description = getItem(position).getDescription();
 
         //Create the Offre object with the information
-        Offre offre = new Offre(fullName, prix, heureDepart, description, telephone, nombrePlace, adresseDepart, adresseDestination, email);
+        OffreDetail offre = new OffreDetail(fullName, prix, heureDepart, description, telephone, nombrePlace, adresseDepart, adresseDestination, email);
+        offre.setKey(getItem(position).getKey());
 
 
         //ViewHolder object
@@ -111,6 +114,7 @@ public class OffreListAdapter extends ArrayAdapter<Offre> {
 //            TODO
 //            holder.description = (TextView) convertView.findViewById(R.id.description);
             holder.buttonDetails = (Button) convertView.findViewById(R.id.btnShowDetails);
+            holder.buttonRequest = (Button) convertView.findViewById(R.id.btnSendRequest);
 
 
             result = convertView;
@@ -164,6 +168,17 @@ public class OffreListAdapter extends ArrayAdapter<Offre> {
                //     mClickListener.onBtnClick((Integer) v.getTag());
             }
         });
+
+        holder.buttonRequest.setTag(offre); //For passing the list item index
+        holder.buttonRequest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                 TODO Auto-generated method stub
+                if(mClickRequestListener != null)
+                    mClickRequestListener.onBtnClick(offre, offre.getKey());
+            }
+        });
+
         return convertView;
     }
 
