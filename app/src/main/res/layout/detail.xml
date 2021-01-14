@@ -284,10 +284,27 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <EditText
+                android:id="@+id/numberPlaceToRequest"
+                android:layout_width="166dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="120dp"
+                android:layout_marginEnd="24dp"
+                android:ems="1"
+                android:hint="Number of place to request"
+                android:inputType="numberDecimal"
+                android:textColor="@color/black"
+                android:textColorHighlight="@color/black"
+                android:textColorHint="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
             <Button
                 android:id="@+id/btnSendRequest"
-                android:layout_width="match_parent"
+                android:layout_width="166dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="120dp"
                 android:text="Send request"
                 android:textColor="@color/black"
                 android:textSize="10sp"

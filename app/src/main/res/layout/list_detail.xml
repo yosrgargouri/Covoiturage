@@ -157,13 +157,13 @@
             android:orientation="horizontal">
 
             <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="81dp"
+                android:layout_height="40dp"
                 android:layout_weight="1" />
 
             <Button
                 android:id="@+id/btnShowDetails"
-                android:layout_width="76dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Show details"
                 android:textColor="@color/black"
@@ -175,16 +175,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
-
-            <Button
-                android:id="@+id/btnSendRequest"
-                android:layout_width="75dp"
-                android:layout_height="wrap_content"
-                android:text="Send request"
-                android:textColor="@color/black"
-                android:textSize="10sp"
-                android:textStyle="bold"
-                app:backgroundTint="@color/ss" />
 
             <Space
                 android:layout_width="wrap_content"

@@ -22,6 +22,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.cov.model.Offre;
 import com.example.cov.model.OffreDetail;
+import com.example.cov.model.Request;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -39,20 +40,12 @@ import java.util.stream.Collectors;
 
 public class MainActivity extends AppCompatActivity {
 
-    public interface DataStatus {
-        void DataIsLoded(List<Offre> offres, List<String> keys);
-
-        void DataInInserted();
-
-        void DataIsUpdated();
-
-        void DataIsDeleted();
-    }
 
     private final static String TAG = "MainActivity";
 
     private FirebaseAuth firebaseAuth;
-    private DatabaseReference db;
+    private DatabaseReference dbOffre;
+    private DatabaseReference dbRequest;
     private ListView mListData;
     private SimpleDateFormat ISO_FORMAT = new SimpleDateFormat("dd-MM-yyyy'T'HH:mm'Z'");
     private EditText mHeureDepart;
@@ -82,13 +75,32 @@ public class MainActivity extends AppCompatActivity {
     BtnClickListener btnRequestListener = new BtnClickListener() {
 
         @Override
-        public void onBtnClick(Offre offre, String key) {
+        public void onBtnClick(Offre offre, String key, EditText numberPlaceToRequest, Dialog dialog) {
             // TODO Auto-generated method stub
             // Call your function which creates and shows the dialog here
 //            changeMoneda(position);
-            offre.setNombre_place(offre.getNombre_place() - 1);
-            updateOffre(key,offre);
-            Log.w(TAG, "offre : {" + offre.toString() + "}");
+        //    offre.setNombre_place(offre.getNombre_place() - 1);
+        //    updateOffre(key,offre);
+            Request request = new Request();
+            request.setEmail_request(firebaseAuth.getCurrentUser().getEmail());
+            request.setNombre_place((numberPlaceToRequest.getText() != null) ? Integer.parseInt(numberPlaceToRequest.getText().toString()) : 1);
+            request.setOffre_key(key);
+
+            dbRequest.push().setValue(request).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    Toast.makeText(MainActivity.this, "The request has been sent with success", Toast.LENGTH_LONG).show();
+                    dialog.cancel();
+                }
+
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.w(TAG, "Error ", e);
+                    Toast.makeText(MainActivity.this, "request failed.", Toast.LENGTH_LONG).show();
+
+                }
+            });
         }
     };
 
@@ -101,10 +113,11 @@ public class MainActivity extends AppCompatActivity {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         DrawerLayout relativeLayout2 = findViewById(R.id.relativeLayout2);
 
-        db = FirebaseDatabase.getInstance().getReference("offres");
+        dbOffre = FirebaseDatabase.getInstance().getReference("offres");
+        dbRequest = FirebaseDatabase.getInstance().getReference("requests");
 
         // Read from the database
-        db.addValueEventListener(new ValueEventListener() {
+        dbOffre.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
@@ -236,8 +249,8 @@ public class MainActivity extends AppCompatActivity {
                 offre.setPrix(prix);
                 offre.setTelephone(telephone);
 
-                String key = db.push().getKey();
-                db.child(key).setValue(offre).addOnSuccessListener(new OnSuccessListener<Void>() {
+                String key = dbOffre.push().getKey();
+                dbOffre.child(key).setValue(offre).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         dialog.cancel();
@@ -268,7 +281,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void updateOffre(String key, Offre offre) {
-        db.child(key).setValue(offre).addOnSuccessListener(new OnSuccessListener<Void>() {
+        dbOffre.child(key).setValue(offre).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 Toast.makeText(MainActivity.this, "updated.", Toast.LENGTH_SHORT).show();

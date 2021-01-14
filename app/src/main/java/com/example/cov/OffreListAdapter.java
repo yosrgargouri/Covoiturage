@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.view.View;
 
@@ -23,6 +24,8 @@ public class OffreListAdapter extends ArrayAdapter<OffreDetail> {
     private int mResource;
     private int lastPosition = -1;
     private BtnClickListener mClickRequestListener = null;
+    Button buttonRequest2;
+
 
     //Details:
     TextView emailDetail;
@@ -142,40 +145,42 @@ public class OffreListAdapter extends ArrayAdapter<OffreDetail> {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-              //  if(mClickListener != null){
-                    Dialog dialog = new Dialog(mContext);
-                    dialog.setContentView(R.layout.detail);
-                    heureDepartDetail = (TextView) dialog.findViewById(R.id.heureDepartDetail);
-                    heureDepartDetail.setText(offre.getHeure_depart());
-                    adresseDepartDetail = (TextView) dialog.findViewById(R.id.adresseDepartDetail);
-                    adresseDepartDetail.setText(offre.getAdresse_depart());
-                    adresseDestinationDetail = (TextView) dialog.findViewById(R.id.adresseDestinationDetail);
-                    adresseDestinationDetail.setText(offre.getAdresse_destination());
-                    prixDetail = (TextView) dialog.findViewById(R.id.prixDetail);
-                    prixDetail.setText(offre.getPrix() != null ? offre.getPrix().toString() : null);
-                    emailDetail = (TextView) dialog.findViewById(R.id.emailDetail);
-                    emailDetail.setText(offre.getEmail());
-                    fullNameDetail = (TextView) dialog.findViewById(R.id.fullNameDetail);
-                    fullNameDetail.setText(offre.getFull_name());
-                    descriptionDetail = (TextView) dialog.findViewById(R.id.descriptionDetail);
-                    descriptionDetail.setText(offre.getDescription());
-                    nombrePlaceDetail = (TextView) dialog.findViewById(R.id.nombrePlaceDetail);
-                    nombrePlaceDetail.setText(offre.getNombre_place() != null ? offre.getNombre_place().toString() : null);
-                    telephoneDetail = (TextView) dialog.findViewById(R.id.telephoneDetail);
-                    telephoneDetail.setText(offre.getTelephone() != null ? offre.getTelephone().toString() : null);
-                    dialog.show();
-               // } else
-               //     mClickListener.onBtnClick((Integer) v.getTag());
-            }
-        });
-
-        holder.buttonRequest.setTag(offre); //For passing the list item index
-        holder.buttonRequest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                //  if(mClickListener != null){
+                Dialog dialog = new Dialog(mContext);
+                dialog.setContentView(R.layout.detail);
+                heureDepartDetail = (TextView) dialog.findViewById(R.id.heureDepartDetail);
+                heureDepartDetail.setText(offre.getHeure_depart());
+                adresseDepartDetail = (TextView) dialog.findViewById(R.id.adresseDepartDetail);
+                adresseDepartDetail.setText(offre.getAdresse_depart());
+                adresseDestinationDetail = (TextView) dialog.findViewById(R.id.adresseDestinationDetail);
+                adresseDestinationDetail.setText(offre.getAdresse_destination());
+                prixDetail = (TextView) dialog.findViewById(R.id.prixDetail);
+                prixDetail.setText(offre.getPrix() != null ? offre.getPrix().toString() : null);
+                emailDetail = (TextView) dialog.findViewById(R.id.emailDetail);
+                emailDetail.setText(offre.getEmail());
+                fullNameDetail = (TextView) dialog.findViewById(R.id.fullNameDetail);
+                fullNameDetail.setText(offre.getFull_name());
+                descriptionDetail = (TextView) dialog.findViewById(R.id.descriptionDetail);
+                descriptionDetail.setText(offre.getDescription());
+                nombrePlaceDetail = (TextView) dialog.findViewById(R.id.nombrePlaceDetail);
+                nombrePlaceDetail.setText(offre.getNombre_place() != null ? offre.getNombre_place().toString() : null);
+                telephoneDetail = (TextView) dialog.findViewById(R.id.telephoneDetail);
+                telephoneDetail.setText(offre.getTelephone() != null ? offre.getTelephone().toString() : null);
+                dialog.show();
+                EditText numberPlaceToRequest = dialog.findViewById(R.id.numberPlaceToRequest);
+                buttonRequest2 = dialog.findViewById(R.id.btnSendRequest);
+                //buttonRequest2.setTag();
+                buttonRequest2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 //                 TODO Auto-generated method stub
-                if(mClickRequestListener != null)
-                    mClickRequestListener.onBtnClick(offre, offre.getKey());
+                        if (mClickRequestListener != null) {
+                            mClickRequestListener.onBtnClick(offre, offre.getKey(), numberPlaceToRequest, dialog);
+                        }
+                    }
+                });
+                // } else
+                //     mClickListener.onBtnClick((Integer) v.getTag());
             }
         });
 
