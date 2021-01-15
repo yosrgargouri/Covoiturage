@@ -148,7 +148,7 @@ public class OffreListAdapter extends ArrayAdapter<OffreDetail> {
                 //  if(mClickListener != null){
                 Dialog dialog = new Dialog(mContext);
                 dialog.setContentView(R.layout.detail);
-                heureDepartDetail = (TextView) dialog.findViewById(R.id.heureDepartDetail);
+                heureDepartDetail = (TextView) dialog.findViewById(R.id.emailOffre);
                 heureDepartDetail.setText(offre.getHeure_depart());
                 adresseDepartDetail = (TextView) dialog.findViewById(R.id.adresseDepartDetail);
                 adresseDepartDetail.setText(offre.getAdresse_depart());

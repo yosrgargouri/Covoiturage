@@ -97,7 +97,7 @@
             android:layout_height="39dp">
 
             <TextView
-                android:id="@+id/labelHeureDepart"
+                android:id="@+id/labelEmailOffre"
                 android:layout_width="140dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
@@ -106,10 +106,10 @@
                 android:textColor="@color/black" />
 
             <TextView
-                android:id="@+id/heureDepartDetail"
+                android:id="@+id/emailOffre"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:layout_below="@+id/labelHeureDepart"
+                android:layout_below="@+id/labelEmailOffre"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:gravity="center|left"

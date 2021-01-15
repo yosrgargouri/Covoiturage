@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -25,6 +26,7 @@ import com.example.cov.model.OffreDetail;
 import com.example.cov.model.Request;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -79,11 +81,11 @@ public class MainActivity extends AppCompatActivity {
             // TODO Auto-generated method stub
             // Call your function which creates and shows the dialog here
 //            changeMoneda(position);
-        //    offre.setNombre_place(offre.getNombre_place() - 1);
-        //    updateOffre(key,offre);
+            //    offre.setNombre_place(offre.getNombre_place() - 1);
+            //    updateOffre(key,offre);
             Request request = new Request();
             request.setEmail_request(firebaseAuth.getCurrentUser().getEmail());
-            request.setNombre_place((numberPlaceToRequest.getText() != null) ? Integer.parseInt(numberPlaceToRequest.getText().toString()) : 1);
+            request.setNombre_place(!numberPlaceToRequest.getText().toString().isEmpty() ? Integer.parseInt(numberPlaceToRequest.getText().toString()) : 1);
             request.setOffre_key(key);
 
             dbRequest.push().setValue(request).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -112,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         DrawerLayout relativeLayout2 = findViewById(R.id.relativeLayout2);
+        NavigationView navigationview = findViewById(R.id.navigationview);
 
         dbOffre = FirebaseDatabase.getInstance().getReference("offres");
         dbRequest = FirebaseDatabase.getInstance().getReference("requests");
@@ -168,10 +171,26 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.imageMenu).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                relativeLayout2.openDrawer(GravityCompat.START);
-
+                if (!relativeLayout2.isDrawerOpen(GravityCompat.START))
+                    relativeLayout2.openDrawer(GravityCompat.START);
+                else relativeLayout2.closeDrawer(GravityCompat.END);
             }
         });
+        navigationview.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.menuNotifications:
+                        startActivity(new Intent(getApplicationContext(), RequestActivity.class));
+                        return true;
+                    case R.id.menuLogout:
+                        logout();
+                    default:
+                        return true;
+                }
+            }
+        });
+
     }
 
 
@@ -270,11 +289,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void logout(View view) {
-        FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-        finish();
-    }
+//    public void logout(View view) {
+//        FirebaseAuth.getInstance().signOut();
+//        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+//        finish();
+//    }
 
     public void clearFilter(View view) {
         mListData.setAdapter(new OffreListAdapter(MainActivity.this, R.layout.list_detail, offres, btnRequestListener));
@@ -287,6 +306,17 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "updated.", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void logout(View view) {
+        FirebaseAuth.getInstance().signOut();
+        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+        finish();
+    }
+    public void logout() {
+        FirebaseAuth.getInstance().signOut();
+        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+        finish();
     }
 
 }
