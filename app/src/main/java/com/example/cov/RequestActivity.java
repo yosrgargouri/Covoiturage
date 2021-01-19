@@ -42,7 +42,6 @@ public class RequestActivity extends AppCompatActivity {
         @Override
         public void onBtnClick(RequestDetail requestDetail, String status) {
             Request request = new Request(requestDetail.getEmail_request(), requestDetail.getOffre_key(), requestDetail.getNombre_place(), status);
-            //TODO: fix null key
             updateStatusRequest(requestDetail.getRequest_key(), request);
         }
     };
@@ -50,7 +49,6 @@ public class RequestActivity extends AppCompatActivity {
         @Override
         public void onBtnClick(RequestDetail requestDetail, String status) {
             Request request = new Request(requestDetail.getEmail_request(), requestDetail.getOffre_key(), requestDetail.getNombre_place(), status);
-            //TODO: fix null key
             updateStatusRequest(requestDetail.getRequest_key(), request);
         }
     };
@@ -76,7 +74,7 @@ public class RequestActivity extends AppCompatActivity {
                     requestDetails.clear();
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
                         Request request = ds.getValue(Request.class);
-                        if ("requested".equals(request.getStatus())) {
+                        if ("requested".equals(request.getStatus()) && !firebaseUser.getEmail().equals(request.getEmail_request())) {
 
                             RequestDetail requestDetail = new RequestDetail(request);
                             requestDetail.setRequest_key(ds.getKey());
@@ -93,9 +91,6 @@ public class RequestActivity extends AppCompatActivity {
                                             requestDetail.setTitleOffre(offre.getAdresse_depart() + " --> " + offre.getAdresse_destination() + " : " + offre.getHeure_depart());
                                             requestDetails.stream().filter(elt -> elt.getRequest_key().equals(requestDetail.getRequest_key())).findFirst().ifPresent(elt -> requestDetails.remove(elt));
                                             requestDetails.add(requestDetail);
-                                            //TODO Delete
-//                                        requestDetails.stream().filter(elt -> elt.getEmail_request().equals(firebaseUser.getEmail())).allMatch(elt -> requestDetails.remove(elt));
-
                                             mListData.setAdapter(new RequestListAdapter(RequestActivity.this, R.layout.request_detail, requestDetails, btnAcceptListener, btnCancelListener));
                                         }
                                     }
@@ -107,8 +102,17 @@ public class RequestActivity extends AppCompatActivity {
                                     Log.w(TAG, "Failed to read value.", error.toException());
                                 }
                             });
+
+
                         }
                     }
+                    if(requestDetails.isEmpty()){
+
+                        mListData.setAdapter(null);
+                    }
+                } else {
+                    mListData.setAdapter(null);
+
                 }
             }
 
@@ -118,7 +122,6 @@ public class RequestActivity extends AppCompatActivity {
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
-//        mListData.setAdapter(new RequestListAdapter(RequestActivity.this, R.layout.request_detail, requestDetails));
     }
 
     public void updateOffre(String key, Offre offre) {

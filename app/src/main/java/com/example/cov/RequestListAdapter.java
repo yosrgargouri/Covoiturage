@@ -73,6 +73,7 @@ public class RequestListAdapter extends ArrayAdapter<RequestDetail> {
         //Create the Offre object with the information
         RequestDetail requestDetail = new RequestDetail(titleOffre, email, nombrePlace);
         requestDetail.setOffre_key(getItem(position).getOffre_key());
+        requestDetail.setRequest_key(getItem(position).getRequest_key());
 
         //ViewHolder object
         ViewHolder holder;
