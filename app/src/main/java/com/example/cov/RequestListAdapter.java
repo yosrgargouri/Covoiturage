@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.cov.model.RequestDetail;
@@ -19,8 +20,8 @@ public class RequestListAdapter extends ArrayAdapter<RequestDetail> {
     private Context mContext;
     private int mResource;
     private int lastPosition = -1;
-    private BtnClickListener mClickAcceptListener = null;
-    private BtnClickListener mClickCancelListener = null;
+    private BtnRequestClickListener mClickAcceptListener = null;
+    private BtnRequestClickListener mClickCancelListener = null;
 
 
     /**
@@ -30,7 +31,8 @@ public class RequestListAdapter extends ArrayAdapter<RequestDetail> {
         TextView titleOffre;
         TextView emailOffre;
         TextView nombrePlaceDetail2;
-
+        Button buttonAccept;
+        Button buttonReject;
 
         TextView nombrePlace;
     }
@@ -48,11 +50,12 @@ public class RequestListAdapter extends ArrayAdapter<RequestDetail> {
         mResource = resource;
     }
 
-    public RequestListAdapter(Context context, int resource, ArrayList<RequestDetail> objects, BtnClickListener clickRequestListener) {
+    public RequestListAdapter(Context context, int resource, ArrayList<RequestDetail> objects, BtnRequestClickListener clickAcceptListener, BtnRequestClickListener clickCancelListener) {
         super(context, resource, objects);
         mContext = context;
         mResource = resource;
-//        mClickRequestListener = clickRequestListener;
+        mClickAcceptListener = clickAcceptListener;
+        mClickCancelListener = clickCancelListener;
     }
 
     @Override
@@ -82,6 +85,8 @@ public class RequestListAdapter extends ArrayAdapter<RequestDetail> {
             holder.titleOffre = (TextView) convertView.findViewById(R.id.titleOffre);
             holder.emailOffre = (TextView) convertView.findViewById(R.id.emailOffre);
             holder.nombrePlaceDetail2 = (TextView) convertView.findViewById(R.id.nombrePlaceDetail2);
+            holder.buttonAccept = (Button) convertView.findViewById(R.id.btnAccept);
+            holder.buttonReject = (Button) convertView.findViewById(R.id.btnCancel);
 
             result = convertView;
 
@@ -97,6 +102,27 @@ public class RequestListAdapter extends ArrayAdapter<RequestDetail> {
         holder.titleOffre.setText(requestDetail.getTitleOffre());
         holder.emailOffre.setText(requestDetail.getEmail_request());
         holder.nombrePlaceDetail2.setText(requestDetail.getNombre_place() != null ? requestDetail.getNombre_place().toString() : null);
+
+        holder.buttonAccept.setTag(position); //For passing the list item index
+        holder.buttonAccept.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                 if (mClickAcceptListener != null) {
+                     mClickAcceptListener.onBtnClick(requestDetail, "ACCEPTED");
+                        }
+            }
+        });
+
+        holder.buttonReject.setTag(position); //For passing the list item index
+        holder.buttonReject.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                 if (mClickCancelListener != null) {
+                     mClickAcceptListener.onBtnClick(requestDetail, "REFUSED");
+                        }
+            }
+        });
+
 
         return result;
     }

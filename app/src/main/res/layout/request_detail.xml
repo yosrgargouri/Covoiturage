@@ -94,7 +94,7 @@
                 android:layout_weight="1" />
 
             <Button
-                android:id="@+id/btnSearch2"
+                android:id="@+id/btnCancel"
                 android:layout_width="68dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -110,7 +110,7 @@
                 android:layout_weight="1" />
 
             <Button
-                android:id="@+id/btnSearch"
+                android:id="@+id/btnAccept"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="Accept"

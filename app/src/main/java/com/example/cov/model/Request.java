@@ -5,11 +5,13 @@ public class Request {
     private String email_request;
     private String offre_key;
     private Integer nombre_place;
+    private String status;
 
-    public Request(String email_request, String offre_key, Integer nombre_place) {
+    public Request(String email_request, String offre_key, Integer nombre_place, String status) {
         this.email_request = email_request;
         this.offre_key = offre_key;
         this.nombre_place = nombre_place;
+        this.status = status;
     }
 
     public Request() {
@@ -37,5 +39,13 @@ public class Request {
 
     public void setNombre_place(Integer nombre_place) {
         this.nombre_place = nombre_place;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

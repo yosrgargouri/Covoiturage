@@ -87,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
             request.setEmail_request(firebaseAuth.getCurrentUser().getEmail());
             request.setNombre_place(!numberPlaceToRequest.getText().toString().isEmpty() ? Integer.parseInt(numberPlaceToRequest.getText().toString()) : 1);
             request.setOffre_key(key);
+            request.setStatus("requested");
 
             dbRequest.push().setValue(request).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
@@ -299,19 +300,10 @@ public class MainActivity extends AppCompatActivity {
         mListData.setAdapter(new OffreListAdapter(MainActivity.this, R.layout.list_detail, offres, btnRequestListener));
     }
 
-    public void updateOffre(String key, Offre offre) {
-        dbOffre.child(key).setValue(offre).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                Toast.makeText(MainActivity.this, "updated.", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+
 
     public void logout(View view) {
-        FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-        finish();
+        logout();
     }
     public void logout() {
         FirebaseAuth.getInstance().signOut();

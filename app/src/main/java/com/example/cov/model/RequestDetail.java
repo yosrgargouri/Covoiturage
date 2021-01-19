@@ -6,6 +6,7 @@ public class RequestDetail {
     private String request_key;
     private String offre_key;
     private String titleOffre;
+    private String status;
     private Integer nombre_place;
 
     public RequestDetail(String titleOffre, String email_request, Integer nombre_place) {
@@ -13,11 +14,18 @@ public class RequestDetail {
         this.titleOffre = titleOffre;
         this.nombre_place = nombre_place;
     }
+    public RequestDetail(String titleOffre, String email_request, Integer nombre_place, String status) {
+        this.email_request = email_request;
+        this.titleOffre = titleOffre;
+        this.nombre_place = nombre_place;
+        this.status = status;
+    }
 
     public RequestDetail(Request request) {
         this.setOffre_key(request.getOffre_key());
         this.setEmail_request(request.getEmail_request());
         this.setNombre_place(request.getNombre_place());
+        this.setStatus(request.getStatus());
     }
 
     public String getRequest_key() {
@@ -62,5 +70,13 @@ public class RequestDetail {
 
     public void setNombre_place(Integer nombre_place) {
         this.nombre_place = nombre_place;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
