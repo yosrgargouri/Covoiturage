@@ -133,7 +133,8 @@ public class MainActivity extends AppCompatActivity {
                         Offre offre = ds.getValue(Offre.class);
                         OffreDetail offreDetail = new OffreDetail(offre);
                         offreDetail.setKey(ds.getKey());
-                        offres.add(offreDetail);
+                        if (offreDetail.getNombre_place() > 0)
+                            offres.add(offreDetail);
                         mListData.setAdapter(new OffreListAdapter(MainActivity.this, R.layout.list_detail, offres, btnRequestListener));
                     }
                 }
@@ -182,10 +183,12 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.menuNotifications:
-                        startActivity(new Intent(getApplicationContext(), RequestActivity.class));
+                        startActivity(new Intent(getApplicationContext(), NotificationActivity.class));
                         return true;
                     case R.id.menuLogout:
                         logout();
+                    case R.id.menuProfile:
+                        startActivity(new Intent(getApplicationContext(), RequestActivity.class));
                     default:
                         return true;
                 }
@@ -301,10 +304,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     public void logout(View view) {
         logout();
     }
+
     public void logout() {
         FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(getApplicationContext(), LoginActivity.class));

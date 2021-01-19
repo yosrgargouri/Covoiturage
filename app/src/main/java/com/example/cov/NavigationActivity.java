@@ -9,10 +9,6 @@ import android.widget.Button;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-
-import com.google.firebase.auth.FirebaseAuth;
 
 public class NavigationActivity extends AppCompatActivity {
 
@@ -28,7 +24,7 @@ public class NavigationActivity extends AppCompatActivity {
         mNotif.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), RequestActivity.class));
+                startActivity(new Intent(getApplicationContext(), NotificationActivity.class));
             }
         });
     }

@@ -16,7 +16,7 @@ public class RequestListAdapter extends ArrayAdapter<RequestDetail> {
 
     private static final String TAG = "OffreListAdapter";
 
-    private String key;
+    private boolean onlyDetail = false;
     private Context mContext;
     private int mResource;
     private int lastPosition = -1;
@@ -48,6 +48,7 @@ public class RequestListAdapter extends ArrayAdapter<RequestDetail> {
         super(context, resource, objects);
         mContext = context;
         mResource = resource;
+        onlyDetail = true;
     }
 
     public RequestListAdapter(Context context, int resource, ArrayList<RequestDetail> objects, BtnRequestClickListener clickAcceptListener, BtnRequestClickListener clickCancelListener) {
@@ -74,6 +75,7 @@ public class RequestListAdapter extends ArrayAdapter<RequestDetail> {
         RequestDetail requestDetail = new RequestDetail(titleOffre, email, nombrePlace);
         requestDetail.setOffre_key(getItem(position).getOffre_key());
         requestDetail.setRequest_key(getItem(position).getRequest_key());
+        requestDetail.setOffre(getItem(position).getOffre());
 
         //ViewHolder object
         ViewHolder holder;
@@ -89,6 +91,10 @@ public class RequestListAdapter extends ArrayAdapter<RequestDetail> {
             holder.buttonAccept = (Button) convertView.findViewById(R.id.btnAccept);
             holder.buttonReject = (Button) convertView.findViewById(R.id.btnCancel);
 
+            if (onlyDetail) {
+                holder.buttonAccept.setVisibility(View.INVISIBLE);
+                holder.buttonReject.setVisibility(View.INVISIBLE);
+            }
             result = convertView;
 
             convertView.setTag(holder);
@@ -103,27 +109,28 @@ public class RequestListAdapter extends ArrayAdapter<RequestDetail> {
         holder.titleOffre.setText(requestDetail.getTitleOffre());
         holder.emailOffre.setText(requestDetail.getEmail_request());
         holder.nombrePlaceDetail2.setText(requestDetail.getNombre_place() != null ? requestDetail.getNombre_place().toString() : null);
+        if (!onlyDetail) {
 
-        holder.buttonAccept.setTag(position); //For passing the list item index
-        holder.buttonAccept.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                 if (mClickAcceptListener != null) {
-                     mClickAcceptListener.onBtnClick(requestDetail, "ACCEPTED");
-                        }
-            }
-        });
+            holder.buttonAccept.setTag(position); //For passing the list item index
+            holder.buttonAccept.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mClickAcceptListener != null) {
+                        mClickAcceptListener.onBtnClick(requestDetail, "ACCEPTED");
+                    }
+                }
+            });
 
-        holder.buttonReject.setTag(position); //For passing the list item index
-        holder.buttonReject.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                 if (mClickCancelListener != null) {
-                     mClickAcceptListener.onBtnClick(requestDetail, "REFUSED");
-                        }
-            }
-        });
-
+            holder.buttonReject.setTag(position); //For passing the list item index
+            holder.buttonReject.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mClickCancelListener != null) {
+                        mClickCancelListener.onBtnClick(requestDetail, "REFUSED");
+                    }
+                }
+            });
+        }
 
         return result;
     }

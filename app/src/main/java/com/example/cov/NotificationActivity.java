@@ -24,23 +24,33 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class RequestActivity extends AppCompatActivity {
+public class NotificationActivity extends AppCompatActivity {
 
-    private final static String TAG = "RequestActivity";
-
-    private FirebaseAuth firebaseAuth;
+    private final static String TAG = "NotificationActivity";
     private DatabaseReference dbRequest;
     private DatabaseReference dbOffre;
 
     private ListView mListData;
     private final ArrayList<RequestDetail> requestDetails = new ArrayList<>();
 
+    BtnRequestClickListener btnAcceptListener = new BtnRequestClickListener() {
+        @Override
+        public void onBtnClick(RequestDetail requestDetail, String status) {
+            updateStatusRequestAndUpdateOffre(requestDetail.getRequest_key(), status, requestDetail);
+        }
+    };
+    BtnRequestClickListener btnCancelListener = new BtnRequestClickListener() {
+        @Override
+        public void onBtnClick(RequestDetail requestDetail, String status) {
+            cancelRequest(requestDetail.getRequest_key(), status);
+        }
+    };
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_request);
         mListData = findViewById(R.id.listDataOffre);
-        firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         dbRequest = FirebaseDatabase.getInstance().getReference("requests");
@@ -56,7 +66,7 @@ public class RequestActivity extends AppCompatActivity {
                     requestDetails.clear();
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
                         Request request = ds.getValue(Request.class);
-                        if (!"requested".equals(request.getStatus()) && firebaseUser.getEmail().equals(request.getEmail_request())) {
+//                        if ("requested".equals(request.getStatus()) && !firebaseUser.getEmail().equals(request.getEmail_request())) {
 
                             RequestDetail requestDetail = new RequestDetail(request);
                             requestDetail.setRequest_key(ds.getKey());
@@ -69,13 +79,13 @@ public class RequestActivity extends AppCompatActivity {
                                     // whenever data at this location is updated.
                                     if (dataSnapshotx != null && dataSnapshotx.exists() && dataSnapshotx.getChildrenCount() > 0) {
                                         Offre offre = dataSnapshotx.getValue(Offre.class);
-                                        if (!offre.getEmail().equals(firebaseUser.getEmail())) {
+                                        if (offre.getEmail().equals(firebaseUser.getEmail())) {
                                             requestDetail.setTitleOffre(offre.getAdresse_depart() + " --> " + offre.getAdresse_destination() + " : " + offre.getHeure_depart());
                                             requestDetails.stream().filter(elt -> elt.getRequest_key().equals(requestDetail.getRequest_key())).findFirst().ifPresent(elt -> requestDetails.remove(elt));
                                             requestDetail.setOffre(offre);
-                                            if (!"requested".equals(request.getStatus()) && firebaseUser.getEmail().equals(request.getEmail_request())) {
+                                            if ("requested".equals(request.getStatus()) && !firebaseUser.getEmail().equals(request.getEmail_request())) {
                                                 requestDetails.add(requestDetail);
-                                                mListData.setAdapter(new RequestListAdapter(RequestActivity.this, R.layout.request_detail, requestDetails));
+                                                mListData.setAdapter(new RequestListAdapter(NotificationActivity.this, R.layout.request_detail, requestDetails, btnAcceptListener, btnCancelListener));
                                             }
                                         }
                                     }
@@ -89,7 +99,6 @@ public class RequestActivity extends AppCompatActivity {
                             });
 
 
-                        }
                     }
                     if (requestDetails.isEmpty()) {
 
@@ -109,5 +118,37 @@ public class RequestActivity extends AppCompatActivity {
         });
     }
 
+    public void updateNumberPlaceOffre(String key, int numberPlace) {
+        dbOffre.child(key).child("nombre_place").setValue(numberPlace).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Toast.makeText(NotificationActivity.this, "offre updated.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void cancelRequest(String key, String status) {
+        dbRequest.child(key).child("status").setValue(status).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Toast.makeText(NotificationActivity.this, "Request updated.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void updateStatusRequestAndUpdateOffre(String keyRequest, String status, RequestDetail requestDetail) {
+        if (requestDetail.getNombre_place() > requestDetail.getOffre().getNombre_place()) {
+            Toast.makeText(NotificationActivity.this, "The number of places requested is greater than the number of free places", Toast.LENGTH_SHORT).show();
+        } else {
+            dbRequest.child(keyRequest).child("status").setValue(status).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    Toast.makeText(NotificationActivity.this, "Request updated.", Toast.LENGTH_SHORT).show();
+                    updateNumberPlaceOffre(requestDetail.getOffre_key(), requestDetail.getOffre().getNombre_place() - requestDetail.getNombre_place());
+
+                }
+            });
+        }
+    }
 
 }

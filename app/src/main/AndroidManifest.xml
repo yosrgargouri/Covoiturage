@@ -20,9 +20,10 @@
             android:value="AIzaSyDNysXu_ZDqzfaVXpitFOlPvqKulQ3cUws" />
 
         <activity android:name="com.example.cov.EditProfile" />
+        <activity android:name="com.example.cov.RequestActivity" />
         <activity android:name="com.example.cov.MainActivity" />
         <activity android:name="com.example.cov.MainActivityLogout" />
-        <activity android:name="com.example.cov.RequestActivity" />
+        <activity android:name="com.example.cov.NotificationActivity" />
         <activity android:name="com.example.cov.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -8,6 +8,7 @@ public class RequestDetail {
     private String titleOffre;
     private String status;
     private Integer nombre_place;
+    private Offre offre;
 
     public RequestDetail(String titleOffre, String email_request, Integer nombre_place) {
         this.email_request = email_request;
@@ -78,5 +79,13 @@ public class RequestDetail {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Offre getOffre() {
+        return offre;
+    }
+
+    public void setOffre(Offre offre) {
+        this.offre = offre;
     }
 }
