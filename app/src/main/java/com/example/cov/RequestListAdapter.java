@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.cov.model.RequestDetail;
@@ -30,9 +31,12 @@ public class RequestListAdapter extends ArrayAdapter<RequestDetail> {
     private static class ViewHolder {
         TextView titleOffre;
         TextView emailOffre;
+        TextView status;
         TextView nombrePlaceDetail2;
         Button buttonAccept;
         Button buttonReject;
+        LinearLayout layoutButton;
+        LinearLayout layoutStatus;
 
         TextView nombrePlace;
     }
@@ -76,6 +80,7 @@ public class RequestListAdapter extends ArrayAdapter<RequestDetail> {
         requestDetail.setOffre_key(getItem(position).getOffre_key());
         requestDetail.setRequest_key(getItem(position).getRequest_key());
         requestDetail.setOffre(getItem(position).getOffre());
+        requestDetail.setStatus(getItem(position).getStatus());
 
         //ViewHolder object
         ViewHolder holder;
@@ -88,12 +93,20 @@ public class RequestListAdapter extends ArrayAdapter<RequestDetail> {
             holder.titleOffre = (TextView) convertView.findViewById(R.id.titleOffre);
             holder.emailOffre = (TextView) convertView.findViewById(R.id.emailOffre);
             holder.nombrePlaceDetail2 = (TextView) convertView.findViewById(R.id.nombrePlaceDetail2);
+            holder.status = (TextView) convertView.findViewById(R.id.status);
             holder.buttonAccept = (Button) convertView.findViewById(R.id.btnAccept);
             holder.buttonReject = (Button) convertView.findViewById(R.id.btnCancel);
+            holder.layoutButton = (LinearLayout) convertView.findViewById(R.id.layoutButton);
+            holder.layoutStatus = (LinearLayout) convertView.findViewById(R.id.layoutStatus);
 
             if (onlyDetail) {
-                holder.buttonAccept.setVisibility(View.INVISIBLE);
-                holder.buttonReject.setVisibility(View.INVISIBLE);
+//                ViewGroup.LayoutParams params = holder.LinearLayoutParent.getLayoutParams();
+//                // Changes the height and width to the specified *pixels*
+//                params.height = 350;
+                holder.layoutButton.setVisibility(View.INVISIBLE);
+                holder.layoutStatus.setVisibility(View.VISIBLE);
+//                holder.buttonAccept.setVisibility(View.INVISIBLE);
+//                holder.buttonReject.setVisibility(View.INVISIBLE);
             }
             result = convertView;
 
@@ -108,6 +121,10 @@ public class RequestListAdapter extends ArrayAdapter<RequestDetail> {
 
         holder.titleOffre.setText(requestDetail.getTitleOffre());
         holder.emailOffre.setText(requestDetail.getEmail_request());
+        if(onlyDetail){
+            holder.emailOffre.setText(getItem(position).getOffre().getEmail());
+            holder.status.setText(requestDetail.getStatus());
+        }
         holder.nombrePlaceDetail2.setText(requestDetail.getNombre_place() != null ? requestDetail.getNombre_place().toString() : null);
         if (!onlyDetail) {
 

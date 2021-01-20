@@ -6,6 +6,7 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/LinearLayoutParent"
         android:layout_width="match_parent"
         android:layout_height="176dp"
         android:background="@drawable/capturpreview"
@@ -22,6 +23,7 @@
             style="@style/Widget.AppCompat.TextView"
             android:layout_width="382dp"
             android:layout_height="30dp"
+            android:layout_marginTop="5dp"
             android:gravity="center"
             android:text="Title Offre"
             android:textAlignment="center"
@@ -34,7 +36,7 @@
 
             <TextView
                 android:id="@+id/labelEmailOffre"
-                android:layout_width="120dp"
+                android:layout_width="125dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:gravity="center|right"
@@ -50,7 +52,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:gravity="center|left"
-                android:text="Email"
+                android:text=""
                 android:textColor="@color/black" />
 
         </LinearLayout>
@@ -62,7 +64,7 @@
 
             <TextView
                 android:id="@+id/labelNombrePlace"
-                android:layout_width="wrap_content"
+                android:layout_width="125dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:gravity="center|right"
@@ -80,11 +82,42 @@
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:gravity="center|left"
-                android:text="Number of places "
+                android:text=""
+                android:textColor="@color/black" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/layoutStatus"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/labelStatus"
+                android:layout_width="125dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:gravity="center|right"
+                android:text="Status :"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/status"
+                android:layout_width="199dp"
+                android:layout_height="40dp"
+                android:layout_below="@+id/labelNombrePlace"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:gravity="center|left"
+                android:text=""
                 android:textColor="@color/black" />
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/layoutButton"
             android:layout_width="match_parent"
             android:layout_height="54dp"
             android:orientation="horizontal">
