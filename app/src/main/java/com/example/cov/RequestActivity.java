@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.cov.model.Offre;
 import com.example.cov.model.Request;
 import com.example.cov.model.RequestDetail;
+import com.example.cov.model.StatusEnum;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -54,7 +55,7 @@ public class RequestActivity extends AppCompatActivity {
                     requestDetails.clear();
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
                         Request request = ds.getValue(Request.class);
-                        if (!"requested".equals(request.getStatus()) && firebaseUser.getEmail().equals(request.getEmail_request())) {
+                        if (firebaseUser.getEmail().equals(request.getEmail_request())) {
 
                             RequestDetail requestDetail = new RequestDetail(request);
                             requestDetail.setRequest_key(ds.getKey());
@@ -71,7 +72,7 @@ public class RequestActivity extends AppCompatActivity {
                                             requestDetail.setTitleOffre(offre.getAdresse_depart() + " --> " + offre.getAdresse_destination() + " : " + offre.getHeure_depart());
                                             requestDetails.stream().filter(elt -> elt.getRequest_key().equals(requestDetail.getRequest_key())).findFirst().ifPresent(elt -> requestDetails.remove(elt));
                                             requestDetail.setOffre(offre);
-                                            if (!"requested".equals(request.getStatus()) && firebaseUser.getEmail().equals(request.getEmail_request())) {
+                                            if (firebaseUser.getEmail().equals(request.getEmail_request())) {
                                                 requestDetails.add(requestDetail);
                                                 mListData.setAdapter(new RequestListAdapter(RequestActivity.this, R.layout.request_detail, requestDetails));
                                             }

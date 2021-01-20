@@ -5,9 +5,10 @@ public class Request {
     private String email_request;
     private String offre_key;
     private Integer nombre_place;
-    private String status;
+//    @Enumerated(EnumType.STRING)
+    private StatusEnum status;
 
-    public Request(String email_request, String offre_key, Integer nombre_place, String status) {
+    public Request(String email_request, String offre_key, Integer nombre_place, StatusEnum status) {
         this.email_request = email_request;
         this.offre_key = offre_key;
         this.nombre_place = nombre_place;
@@ -41,11 +42,11 @@ public class Request {
         this.nombre_place = nombre_place;
     }
 
-    public String getStatus() {
+    public StatusEnum getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(StatusEnum status) {
         this.status = status;
     }
 }

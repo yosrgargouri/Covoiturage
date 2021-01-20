@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/menuProfile"
+        android:id="@+id/menuRequest"
         android:title="Request"
         android:icon="@drawable/img_81165"
 
@@ -17,7 +17,7 @@
     <item android:title="Others" >
         <menu>
             <item
-                android:id="@+id/menuSetting"
+                android:id="@+id/menuProfile"
                 android:title="Profile"
                 android:icon="@drawable/img_323984"
                 />

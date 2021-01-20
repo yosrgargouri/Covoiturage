@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.cov.model.Offre;
 import com.example.cov.model.Request;
 import com.example.cov.model.RequestDetail;
+import com.example.cov.model.StatusEnum;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -35,13 +36,13 @@ public class NotificationActivity extends AppCompatActivity {
 
     BtnRequestClickListener btnAcceptListener = new BtnRequestClickListener() {
         @Override
-        public void onBtnClick(RequestDetail requestDetail, String status) {
+        public void onBtnClick(RequestDetail requestDetail, StatusEnum status) {
             updateStatusRequestAndUpdateOffre(requestDetail.getRequest_key(), status, requestDetail);
         }
     };
     BtnRequestClickListener btnCancelListener = new BtnRequestClickListener() {
         @Override
-        public void onBtnClick(RequestDetail requestDetail, String status) {
+        public void onBtnClick(RequestDetail requestDetail, StatusEnum status) {
             cancelRequest(requestDetail.getRequest_key(), status);
         }
     };
@@ -66,8 +67,6 @@ public class NotificationActivity extends AppCompatActivity {
                     requestDetails.clear();
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
                         Request request = ds.getValue(Request.class);
-//                        if ("requested".equals(request.getStatus()) && !firebaseUser.getEmail().equals(request.getEmail_request())) {
-
                             RequestDetail requestDetail = new RequestDetail(request);
                             requestDetail.setRequest_key(ds.getKey());
 
@@ -83,7 +82,7 @@ public class NotificationActivity extends AppCompatActivity {
                                             requestDetail.setTitleOffre(offre.getAdresse_depart() + " --> " + offre.getAdresse_destination() + " : " + offre.getHeure_depart());
                                             requestDetails.stream().filter(elt -> elt.getRequest_key().equals(requestDetail.getRequest_key())).findFirst().ifPresent(elt -> requestDetails.remove(elt));
                                             requestDetail.setOffre(offre);
-                                            if ("requested".equals(request.getStatus()) && !firebaseUser.getEmail().equals(request.getEmail_request())) {
+                                            if (StatusEnum.PENDING.equals(request.getStatus()) && !firebaseUser.getEmail().equals(request.getEmail_request())) {
                                                 requestDetails.add(requestDetail);
                                                 mListData.setAdapter(new RequestListAdapter(NotificationActivity.this, R.layout.request_detail, requestDetails, btnAcceptListener, btnCancelListener));
                                             }
@@ -127,8 +126,8 @@ public class NotificationActivity extends AppCompatActivity {
         });
     }
 
-    public void cancelRequest(String key, String status) {
-        dbRequest.child(key).child("status").setValue(status).addOnSuccessListener(new OnSuccessListener<Void>() {
+    public void cancelRequest(String key, StatusEnum status) {
+        dbRequest.child(key).child("status").setValue(status.name()).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 Toast.makeText(NotificationActivity.this, "Request updated.", Toast.LENGTH_SHORT).show();
@@ -136,11 +135,11 @@ public class NotificationActivity extends AppCompatActivity {
         });
     }
 
-    public void updateStatusRequestAndUpdateOffre(String keyRequest, String status, RequestDetail requestDetail) {
+    public void updateStatusRequestAndUpdateOffre(String keyRequest, StatusEnum status, RequestDetail requestDetail) {
         if (requestDetail.getNombre_place() > requestDetail.getOffre().getNombre_place()) {
             Toast.makeText(NotificationActivity.this, "The number of places requested is greater than the number of free places", Toast.LENGTH_SHORT).show();
         } else {
-            dbRequest.child(keyRequest).child("status").setValue(status).addOnSuccessListener(new OnSuccessListener<Void>() {
+            dbRequest.child(keyRequest).child("status").setValue(status.name()).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
                     Toast.makeText(NotificationActivity.this, "Request updated.", Toast.LENGTH_SHORT).show();

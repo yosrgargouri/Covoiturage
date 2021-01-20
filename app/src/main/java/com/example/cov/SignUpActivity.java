@@ -21,7 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 
-public class MainActivityLogout extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity {
 
     private final static String TAG = "MainActivityLogout";
 
@@ -34,7 +34,7 @@ public class MainActivityLogout extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_logout);
+        setContentView(R.layout.sgin_up_activity);
 
 
         mFullname = findViewById(R.id.fullName);
@@ -75,13 +75,13 @@ public class MainActivityLogout extends AppCompatActivity {
                 progressBar.setVisibility(View.VISIBLE);
                 //firebase
                 firebaseAuth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(MainActivityLogout.this, new OnCompleteListener<AuthResult>() {
+                        .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     userProfile();
                                     // Sign up success,
-                                    Toast.makeText(MainActivityLogout.this, "User Created.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(SignUpActivity.this, "User Created.", Toast.LENGTH_SHORT).show();
                                     FirebaseUser user = firebaseAuth.getCurrentUser();
                                     startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                                     //updateUI(user);
@@ -89,9 +89,9 @@ public class MainActivityLogout extends AppCompatActivity {
                                     // If sign up fails, display a message to the user.
                                     progressBar.setVisibility(View.INVISIBLE);
                                     if (task.getException() != null && task.getException().getMessage() != null) {
-                                        Toast.makeText(MainActivityLogout.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                                        Toast.makeText(SignUpActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                                     } else {
-                                        Toast.makeText(MainActivityLogout.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(SignUpActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                                     }
 
                                     //updateUI(null);

@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.cov.model.RequestDetail;
+import com.example.cov.model.StatusEnum;
 
 import java.util.ArrayList;
 
@@ -133,7 +134,7 @@ public class RequestListAdapter extends ArrayAdapter<RequestDetail> {
                 @Override
                 public void onClick(View v) {
                     if (mClickAcceptListener != null) {
-                        mClickAcceptListener.onBtnClick(requestDetail, "ACCEPTED");
+                        mClickAcceptListener.onBtnClick(requestDetail, StatusEnum.ACCEPTED);
                     }
                 }
             });
@@ -143,7 +144,7 @@ public class RequestListAdapter extends ArrayAdapter<RequestDetail> {
                 @Override
                 public void onClick(View v) {
                     if (mClickCancelListener != null) {
-                        mClickCancelListener.onBtnClick(requestDetail, "REFUSED");
+                        mClickCancelListener.onBtnClick(requestDetail, StatusEnum.REFUSED);
                     }
                 }
             });

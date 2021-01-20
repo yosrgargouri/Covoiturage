@@ -7,14 +7,14 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class EditProfile extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity {
     public static final String TAG ="TAG";
     EditText  profileFullName, profileEmail,profilePhone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.edit_profile);
+        setContentView(R.layout.edit_profile);
 //        Intent data = getIntent();
 //        String fullName = data.getStringExtra("fullName");
 //        String email = data.getStringExtra("email");

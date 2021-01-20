@@ -26,7 +26,7 @@ public class RequestDetail {
         this.setOffre_key(request.getOffre_key());
         this.setEmail_request(request.getEmail_request());
         this.setNombre_place(request.getNombre_place());
-        this.setStatus(request.getStatus());
+        this.setStatus(request.getStatus().name());
     }
 
     public String getRequest_key() {

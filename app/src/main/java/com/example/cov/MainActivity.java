@@ -24,6 +24,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.example.cov.model.Offre;
 import com.example.cov.model.OffreDetail;
 import com.example.cov.model.Request;
+import com.example.cov.model.StatusEnum;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
@@ -87,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
             request.setEmail_request(firebaseAuth.getCurrentUser().getEmail());
             request.setNombre_place(!numberPlaceToRequest.getText().toString().isEmpty() ? Integer.parseInt(numberPlaceToRequest.getText().toString()) : 1);
             request.setOffre_key(key);
-            request.setStatus("requested");
+            request.setStatus(StatusEnum.PENDING);
 
             dbRequest.push().setValue(request).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
@@ -187,8 +188,10 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     case R.id.menuLogout:
                         logout();
-                    case R.id.menuProfile:
+                    case R.id.menuRequest:
                         startActivity(new Intent(getApplicationContext(), RequestActivity.class));
+//                    case R.id.menuProfile:
+//                        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                     default:
                         return true;
                 }
