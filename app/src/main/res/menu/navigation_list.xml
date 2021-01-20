@@ -5,8 +5,9 @@
 
     <item
         android:id="@+id/menuProfile"
-        android:title="Profile"
-        android:icon="@drawable/img_323984"
+        android:title="Request"
+        android:icon="@drawable/img_81165"
+
         />
     <item
         android:id="@+id/menuNotifications"
@@ -17,8 +18,9 @@
         <menu>
             <item
                 android:id="@+id/menuSetting"
-                android:title="Setting"
-                android:icon="@drawable/oip"/>
+                android:title="Profile"
+                android:icon="@drawable/img_323984"
+                />
             <item
                 android:id="@+id/menuLogout"
                 android:title="Logout"

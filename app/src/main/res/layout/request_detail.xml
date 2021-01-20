@@ -8,6 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="176dp"
+        android:background="@drawable/capturpreview"
         android:orientation="vertical"
         android:weightSum="100"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -19,7 +20,7 @@
         <TextView
             android:id="@+id/titleOffre"
             style="@style/Widget.AppCompat.TextView"
-            android:layout_width="413dp"
+            android:layout_width="382dp"
             android:layout_height="30dp"
             android:gravity="center"
             android:text="Title Offre"
@@ -33,7 +34,7 @@
 
             <TextView
                 android:id="@+id/labelEmailOffre"
-                android:layout_width="148dp"
+                android:layout_width="120dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:gravity="center|right"
@@ -61,7 +62,7 @@
 
             <TextView
                 android:id="@+id/labelNombrePlace"
-                android:layout_width="148dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:gravity="center|right"
@@ -100,7 +101,7 @@
                 android:layout_weight="1"
                 android:text="Cancel"
                 android:textColor="@color/black"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 android:textStyle="bold"
                 app:backgroundTint="@color/purple_200" />
 
@@ -115,7 +116,7 @@
                 android:layout_height="match_parent"
                 android:text="Accept"
                 android:textColor="@color/black"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 android:textStyle="bold"
                 app:backgroundTint="@color/purple_200" />
 
