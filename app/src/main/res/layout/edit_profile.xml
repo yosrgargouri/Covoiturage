@@ -5,21 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/_6390692_r_sum__flou_fond_d_grad__avec_la_tendance_pastel_rose_pourpre_violet_jaune_et_bleu_pour_les_concepts_daigne_">
-    <![CDATA[
 
-
-
-
-
-         />
-
-
-
-
-
-
-
-    ]]>
 
     <EditText
         android:id="@+id/profileFullName"

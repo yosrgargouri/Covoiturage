@@ -188,10 +188,13 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     case R.id.menuLogout:
                         logout();
+                        return true;
                     case R.id.menuRequest:
                         startActivity(new Intent(getApplicationContext(), RequestActivity.class));
-//                    case R.id.menuProfile:
-//                        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                        return true;
+                    case R.id.menuProfile:
+                        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                        return true;
                     default:
                         return true;
                 }

@@ -14,12 +14,17 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.cov.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -30,12 +35,14 @@ public class SignUpActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private ProgressBar progressBar;
     private TextView mSignInBtn;
+    private DatabaseReference dbUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sgin_up_activity);
+        setContentView(R.layout.sign_up_activity);
 
+        dbUser = FirebaseDatabase.getInstance().getReference("Users");
 
         mFullname = findViewById(R.id.fullName);
         mEmail = findViewById(R.id.email);
@@ -57,9 +64,19 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String email = mEmail.getText().toString().trim();
                 String password = mPassword.getText().toString().trim();
+                String fullName = mFullname.getText().toString().trim();
+                String phoneNumber = mPhone.getText().toString().trim();
 
                 if (TextUtils.isEmpty(email)) {
                     mEmail.setError("Email is Required.");
+                    return;
+                }
+                if (TextUtils.isEmpty(fullName)) {
+                    mFullname.setError("fullName is Required.");
+                    return;
+                }
+                if (TextUtils.isEmpty(phoneNumber)) {
+                    mPhone.setError("phone number is Required.");
                     return;
                 }
 
@@ -82,8 +99,27 @@ public class SignUpActivity extends AppCompatActivity {
                                     userProfile();
                                     // Sign up success,
                                     Toast.makeText(SignUpActivity.this, "User Created.", Toast.LENGTH_SHORT).show();
-                                    FirebaseUser user = firebaseAuth.getCurrentUser();
-                                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                                    FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+                                    User user = new User();
+                                    user.setEmail(email);
+                                    user.setDisplayName(mFullname.getText().toString().trim());
+                                    user.setPhoneNumber(mPhone.getText().toString().trim());
+
+                                    dbUser.child(firebaseUser.getUid()).setValue(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Toast.makeText(SignUpActivity.this, "Profile Updated", Toast.LENGTH_SHORT).show();
+                                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                            finish();
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(SignUpActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+
+//                                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                                     //updateUI(user);
                                 } else {
                                     // If sign up fails, display a message to the user.

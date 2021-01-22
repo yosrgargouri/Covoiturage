@@ -19,6 +19,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDNysXu_ZDqzfaVXpitFOlPvqKulQ3cUws" />
 
+        <activity android:name="com.example.cov.EditProfileActivity" />
         <activity android:name="com.example.cov.ProfileActivity" />
         <activity android:name="com.example.cov.RequestActivity" />
         <activity android:name="com.example.cov.MainActivity" />
